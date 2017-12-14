@@ -24,14 +24,12 @@ public class JRubyImportAddingInvocationHandler implements ScriptInvocationHandl
 	public String getLanguageName() {
 		return "jruby";
 	}
-	
-	public String preInvoke(String script) {
 
+	public String preInvoke(String script) {
 		return "require 'bigdecimal'; require 'bigdecimal/math'; include BigMath; " + script;
 	}
 
 	public Object postInvoke(Object object) {
-
 		return object;
 	}
 

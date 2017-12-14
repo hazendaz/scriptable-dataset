@@ -47,9 +47,9 @@ public class ScriptableTable implements ITable {
 
 	private ITable wrapped;
 
-	private Map<String, ScriptEngine> enginesByPrefix = new HashMap<String, ScriptEngine>();
+	private Map<String, ScriptEngine> enginesByPrefix = new HashMap<>();
 
-	private Map<String, List<ScriptInvocationHandler>> handlersByPrefix = new HashMap<String, List<ScriptInvocationHandler>>();
+	private Map<String, List<ScriptInvocationHandler>> handlersByPrefix = new HashMap<>();
 
 	/**
 	 * Creates a new ScriptableTable.
@@ -94,7 +94,6 @@ public class ScriptableTable implements ITable {
 	 * {@inheritDoc}
 	 */
 	public int getRowCount() {
-
 		return wrapped.getRowCount();
 	}
 
@@ -102,7 +101,6 @@ public class ScriptableTable implements ITable {
 	 * {@inheritDoc}
 	 */
 	public ITableMetaData getTableMetaData() {
-
 		return wrapped.getTableMetaData();
 	}
 
@@ -168,7 +166,7 @@ public class ScriptableTable implements ITable {
 	 */
 	private List<ScriptInvocationHandler> getAllHandlers(ScriptableDataSetConfig config) {
 
-		List<ScriptInvocationHandler> theValue = new ArrayList<ScriptInvocationHandler>();
+		List<ScriptInvocationHandler> theValue = new ArrayList<>();
 
 		// standard handlers for the language
 		theValue.addAll(StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));

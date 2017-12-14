@@ -39,13 +39,17 @@ public class StandardHandlerConfig {
 
 	private static Map<String, List<ScriptInvocationHandler>> standardHandlers;
 
+	private StandardHandlerConfig() {
+		// Prevent Instantiation
+	}
+
 	static {
 
-		standardHandlers = new HashMap<String, List<ScriptInvocationHandler>>();
+		standardHandlers = new HashMap<>();
 
 		ServiceLoader<ScriptInvocationHandler> serviceLoader = ServiceLoader.load(ScriptInvocationHandler.class);
 		Iterator<ScriptInvocationHandler> iterator = serviceLoader.iterator();
-		
+
 		try {
 			while (iterator.hasNext()) {
 				
@@ -54,7 +58,7 @@ public class StandardHandlerConfig {
 				List<ScriptInvocationHandler> handlersForLanguage = standardHandlers.get(scriptInvocationHandler.getLanguageName());
 				
 				if(handlersForLanguage == null) {
-					handlersForLanguage = new ArrayList<ScriptInvocationHandler>();
+					handlersForLanguage = new ArrayList<>();
 					standardHandlers.put(scriptInvocationHandler.getLanguageName(), handlersForLanguage);
 				}
 				
@@ -62,7 +66,6 @@ public class StandardHandlerConfig {
 			}
 		}
 		catch(ServiceConfigurationError error) {
-			
 			Logger logger = LoggerFactory.getLogger(StandardHandlerConfig.class);
 			logger.error("Loading of standard script invocation handlers failed, most likely due to an unknown handler implementation given in META-INF/services" + ScriptInvocationHandler.class.getName());
 			standardHandlers = Collections.emptyMap();
@@ -70,7 +73,6 @@ public class StandardHandlerConfig {
 	}
 
 	public static List<ScriptInvocationHandler> getStandardHandlersByLanguage(String language) {
-		
 		if (standardHandlers.containsKey(language)) {
 			return Collections.unmodifiableList(standardHandlers.get(language));
 		}

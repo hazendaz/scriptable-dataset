@@ -35,7 +35,7 @@ public class ScriptableDataSetConfig {
 
 	private final String languageName;
 
-	private final List<ScriptInvocationHandler> handlers = new ArrayList<ScriptInvocationHandler>();
+	private final List<ScriptInvocationHandler> handlers = new ArrayList<>();
 
 	/**
 	 * Creates a new ScriptableDataSetConfig.
@@ -48,7 +48,6 @@ public class ScriptableDataSetConfig {
 	 *            that language, e.g. "jruby:". May not be null.
 	 */
 	public ScriptableDataSetConfig(String languageName, String prefix) {
-
 		this(languageName, prefix, null);
 	}
 	
@@ -82,17 +81,14 @@ public class ScriptableDataSetConfig {
 	}
 
 	public String getPrefix() {
-
 		return prefix;
 	}
 
 	public String getLanguageName() {
-
 		return languageName;
 	}
 
 	public List<ScriptInvocationHandler> getHandlers() {
-
 		return handlers;
 	}
 

@@ -37,7 +37,7 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 	public String getLanguageName() {
 		return "jruby";
 	}
-	
+
 	public String preInvoke(String script) {
 		return "require 'date';" + script;
 	}
@@ -53,9 +53,6 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 
 				try {
 					object = i.invokeMethod(object, "strftime", "%Y-%m-%d");
-//					object = i.invokeMethod(object, "to_i");
-//					object = new Date(Long.parseLong(object.toString()));
-
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
@@ -67,7 +64,6 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 	}
 
 	public void setScriptEngine(ScriptEngine engine) {
-
 		this.engine = engine;
 	}
 

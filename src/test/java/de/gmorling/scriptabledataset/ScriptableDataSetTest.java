@@ -59,32 +59,27 @@ public class ScriptableDataSetTest {
 
 	@BeforeClass
 	public static void initializeConnection() throws Exception {
-		
 		connection = DriverManager.getConnection("jdbc:derby:derbyTest;create=true");
 		connection.setAutoCommit(false);
-		
+
 		dbUnitConnection = new DatabaseConnection(connection);
 	}
 	
 	@Before
 	public void createTable() throws Exception {
-
 		connection.createStatement().execute("create table location(num int, addr varchar(40), date timestamp)");
 	}
 
 	@After
 	public void rollbackTransaction() throws Exception {
-
 		if(resultSet != null) {
 			resultSet.close();
 		}
-		
 		connection.rollback();
 	}
 	
 	@AfterClass
 	public static void closeConnection() throws Exception {
-		
 		dbUnitConnection.close();
 	}
 
@@ -96,13 +91,12 @@ public class ScriptableDataSetTest {
 	 */
 	@Test
 	public void jRubyScript() throws Exception {
-
 		IDataSet dataSet = new ScriptableDataSet(
 			new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("jruby.xml")),
 			new ScriptableDataSetConfig("jruby", "jruby:"));
-		
+
 		insertDataSetAndCreateResultSet(dataSet);
-		
+
 		assertNextRow(resultSet, 6, "teertS retsbeW", addDaysToToday(-14));
 	}
 	
@@ -114,13 +108,12 @@ public class ScriptableDataSetTest {
 	 */
 	@Test
 	public void groovyScript() throws Exception {
-
 		IDataSet dataSet = new ScriptableDataSet(
 			new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("groovy.xml")), 
 			new ScriptableDataSetConfig("groovy", "groovy:"));
-		
+
 		insertDataSetAndCreateResultSet(dataSet);
-		
+
 		assertNextRow(resultSet, 6, "teertS retsbeW", addDaysToToday(-14));
 	}
 	
@@ -132,7 +125,6 @@ public class ScriptableDataSetTest {
 	 */
 	@Test
 	public void dataSetWithMultipleLanguages() throws Exception {
-		
 		IDataSet dataSet = new ScriptableDataSet(
 			new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("multiple_languages.xml")),
 			new ScriptableDataSetConfig("jruby", "jruby:"),
@@ -153,10 +145,9 @@ public class ScriptableDataSetTest {
 	 */
 	@Test
 	public void customHandler() throws Exception {
-
-		List<ScriptInvocationHandler> handlers = new ArrayList<ScriptInvocationHandler>();
+		List<ScriptInvocationHandler> handlers = new ArrayList<>();
 		handlers.add(new JRubyImportAddingInvocationHandler());
-		
+
 		IDataSet dataSet = new ScriptableDataSet(
 			new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("customhandler.xml")),
 			new ScriptableDataSetConfig("jruby", "jruby:", handlers));
@@ -174,7 +165,6 @@ public class ScriptableDataSetTest {
 	 */
 	@Test(expected = RuntimeException.class)
 	public void unknownScriptingEngine() throws Exception {
-
 		IDataSet dataSet = new ScriptableDataSet(
 			new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("unknownscriptingengine.xml")),
 			new ScriptableDataSetConfig("unknown", "unknown:"));
@@ -184,16 +174,14 @@ public class ScriptableDataSetTest {
 	
 	private void insertDataSetAndCreateResultSet(IDataSet dataSet)
 			throws DatabaseUnitException, SQLException {
-		
 		DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
-		
 		resultSet = connection.createStatement().executeQuery("SELECT num, addr, date FROM location ORDER BY num");
 	}
 
 	private void assertNextRow(ResultSet rs, int expectedInt, String expectedString, Date expectedDate) throws SQLException {
-
-		if (!rs.next())
+		if (!rs.next()) {
 			fail("Data set should have a row.");
+		}
 
 		assertEquals(expectedInt, rs.getObject(1));
 		assertEquals(expectedString, rs.getObject(2));
@@ -201,7 +189,6 @@ public class ScriptableDataSetTest {
 	}
 	
 	private Date addDaysToToday(int numberOfDays) {
-		
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, numberOfDays);
 

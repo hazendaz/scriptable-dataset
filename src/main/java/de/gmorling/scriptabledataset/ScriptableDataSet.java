@@ -63,7 +63,7 @@ import org.dbunit.dataset.ITableIterator;
  * <li><b>jruby:</b> is a prefix, that shall precede fields in that scripting
  * language</li>
  * <li><b>handlers</b> is an optional list of
- * {@link ScriptInvocationHandler}s, that can be used to pre-process
+ * {@link de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler} s, that can be used to pre-process
  * scripts (e.g. to add common imports) and post-process scripts (e.g. to
  * convert results into data types understood by DBUnit).</li>
  * </ul>
@@ -99,7 +99,6 @@ public class ScriptableDataSet extends AbstractDataSet {
 
 	@Override
 	protected ITableIterator createIterator(boolean reversed) throws DataSetException {
-
 		return new ScriptableIterator(reversed ? wrapped.reverseIterator() : wrapped.iterator(), configurations);
 	}
 
