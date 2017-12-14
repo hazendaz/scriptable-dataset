@@ -67,7 +67,7 @@ public class StandardHandlerConfig {
 		}
 		catch(ServiceConfigurationError error) {
 			Logger logger = LoggerFactory.getLogger(StandardHandlerConfig.class);
-			logger.error("Loading of standard script invocation handlers failed, most likely due to an unknown handler implementation given in META-INF/services" + ScriptInvocationHandler.class.getName());
+			logger.error("Loading of standard script invocation handlers failed, most likely due to an unknown handler implementation given in META-INF/services {}", ScriptInvocationHandler.class.getName());
 			standardHandlers = Collections.emptyMap();
 		}
 	}
