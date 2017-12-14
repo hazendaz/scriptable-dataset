@@ -18,6 +18,9 @@ package de.gmorling.scriptabledataset;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import de.gmorling.scriptabledataset.handlers.JRubyImportAddingInvocationHandler;
+import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,9 +42,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import de.gmorling.scriptabledataset.handlers.JRubyImportAddingInvocationHandler;
-import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
 
 /**
  * Test for ScriptableDataSet.

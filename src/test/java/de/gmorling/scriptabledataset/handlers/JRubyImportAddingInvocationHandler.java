@@ -15,9 +15,9 @@
  */
 package de.gmorling.scriptabledataset.handlers;
 
-import javax.script.ScriptEngine;
-
 import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
+
+import javax.script.ScriptEngine;
 
 public class JRubyImportAddingInvocationHandler implements ScriptInvocationHandler {
 

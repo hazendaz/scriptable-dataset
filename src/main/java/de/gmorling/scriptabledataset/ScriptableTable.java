@@ -15,6 +15,9 @@
  */
 package de.gmorling.scriptabledataset;
 
+import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
+import de.gmorling.scriptabledataset.handlers.StandardHandlerConfig;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,9 +33,6 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ITableMetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
-import de.gmorling.scriptabledataset.handlers.StandardHandlerConfig;
 
 /**
  * ITable implementation, that allows the usage of script statements as field values.

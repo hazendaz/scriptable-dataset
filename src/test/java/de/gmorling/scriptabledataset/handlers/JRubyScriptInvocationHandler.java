@@ -15,12 +15,12 @@
  */
 package de.gmorling.scriptabledataset.handlers;
 
+import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
+
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 
 import org.jruby.RubyObject;
-
-import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
 
 /**
  * A <code>ScriptInvocationHandler</code> for JRuby scripts. It adds some commonly used imports to the begin of each
