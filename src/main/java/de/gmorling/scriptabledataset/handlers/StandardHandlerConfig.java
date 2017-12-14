@@ -72,6 +72,13 @@ public class StandardHandlerConfig {
         }
     }
 
+    /**
+     * Gets the standard handlers by language.
+     *
+     * @param language
+     *            the language
+     * @return the standard handlers by language
+     */
     public static List<ScriptInvocationHandler> getStandardHandlersByLanguage(String language) {
         if (standardHandlers.containsKey(language)) {
             return Collections.unmodifiableList(standardHandlers.get(language));
