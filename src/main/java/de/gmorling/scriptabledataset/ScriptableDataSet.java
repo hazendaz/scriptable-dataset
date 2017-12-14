@@ -50,7 +50,7 @@ import org.dbunit.dataset.ITableIterator;
  * handlers.add(new JRubyImportAddingInvocationHandler());
  * 
  * IDataSet scriptableDS = new ScriptableDataSet(
- * 		wrapped, new ScriptableDataSetConfig(&quot;jruby&quot;, &quot;jruby:&quot;, handlers));
+ *      wrapped, new ScriptableDataSetConfig(&quot;jruby&quot;, &quot;jruby:&quot;, handlers));
  * </pre>
  * 
  * where
