@@ -20,9 +20,9 @@ import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.Validate;
-
 import lombok.ToString;
+
+import org.apache.commons.lang3.Validate;
 
 /**
  * Configures the usage of one scripting language with a prefix and a list of invocation handlers.
