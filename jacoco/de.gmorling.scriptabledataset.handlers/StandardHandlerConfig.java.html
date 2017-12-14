@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StandardHandlerConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scriptable-dataset</a> &gt; <a href="index.source.html" class="el_package">de.gmorling.scriptabledataset.handlers</a> &gt; <span class="el_source">StandardHandlerConfig.java</span></div><h1>StandardHandlerConfig.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2008-2009, Gunnar Morling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package de.gmorling.scriptabledataset.handlers;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.ServiceConfigurationError;
+import java.util.ServiceLoader;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Manages handlers, that shall always executed for scripts in a given language. These standard handlers will be called
+ * &lt;b&gt;before&lt;/b&gt; any custom handlers in the pre invocation and &lt;b&gt;after&lt;/b&gt; any custom handlers in the post invocation.
+ * 
+ * @author Gunnar Morling
+ */
+public class StandardHandlerConfig {
+
+    private static Map&lt;String, List&lt;ScriptInvocationHandler&gt;&gt; standardHandlers;
+
+<span class="nc" id="L40">    private StandardHandlerConfig() {</span>
+        // Prevent Instantiation
+<span class="nc" id="L42">    }</span>
+
+    static {
+
+<span class="fc" id="L46">        standardHandlers = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L48">        ServiceLoader&lt;ScriptInvocationHandler&gt; serviceLoader = ServiceLoader.load(ScriptInvocationHandler.class);</span>
+<span class="fc" id="L49">        Iterator&lt;ScriptInvocationHandler&gt; iterator = serviceLoader.iterator();</span>
+
+        try {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            while (iterator.hasNext()) {</span>
+
+<span class="fc" id="L54">                ScriptInvocationHandler scriptInvocationHandler = iterator.next();</span>
+
+<span class="fc" id="L56">                List&lt;ScriptInvocationHandler&gt; handlersForLanguage = standardHandlers</span>
+<span class="fc" id="L57">                        .get(scriptInvocationHandler.getLanguageName());</span>
+
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                if (handlersForLanguage == null) {</span>
+<span class="fc" id="L60">                    handlersForLanguage = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L61">                    standardHandlers.put(scriptInvocationHandler.getLanguageName(), handlersForLanguage);</span>
+                }
+
+<span class="fc" id="L64">                handlersForLanguage.add(scriptInvocationHandler);</span>
+<span class="fc" id="L65">            }</span>
+<span class="nc" id="L66">        } catch (ServiceConfigurationError error) {</span>
+<span class="nc" id="L67">            Logger logger = LoggerFactory.getLogger(StandardHandlerConfig.class);</span>
+<span class="nc" id="L68">            logger.error(</span>
+                    &quot;Loading of standard script invocation handlers failed, most likely due to an unknown handler implementation given in META-INF/services {}&quot;,
+<span class="nc" id="L70">                    ScriptInvocationHandler.class.getName());</span>
+<span class="nc" id="L71">            standardHandlers = Collections.emptyMap();</span>
+<span class="fc" id="L72">        }</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Gets the standard handlers by language.
+     *
+     * @param language
+     *            the language
+     * @return the standard handlers by language
+     */
+    public static List&lt;ScriptInvocationHandler&gt; getStandardHandlersByLanguage(String language) {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (standardHandlers.containsKey(language)) {</span>
+<span class="fc" id="L84">            return Collections.unmodifiableList(standardHandlers.get(language));</span>
+        } else {
+<span class="fc" id="L86">            return Collections.emptyList();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
