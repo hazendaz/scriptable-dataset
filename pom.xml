@@ -50,6 +50,16 @@
         </site>
     </distributionManagement>
 
+    <properties>
+        <!-- Java Settings -->
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+        <!-- Signature Settings -->
+        <signature.artifact>java17</signature.artifact>
+        <signature.version>1.0</signature.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
