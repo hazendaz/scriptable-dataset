@@ -14,31 +14,25 @@ Original repo has not been touched in nearly 7 years.  While the code base is no
 
 ## Overview ##
 
-An implementation of a [DBUnit](http://www.dbunit.org/) ```IDataSet```, that allows the use of script expressions in its fields. In order to use a certain scripting language in a scriptable data
-set, a [JSR 223](http://jcp.org/en/jsr/detail?id=223) (Scripting for the Java&trade; Platform") compatible script engine has to exist for that language.
+An implementation of a [DBUnit](http://dbunit.sourceforge.net/) ```IDataSet```, that allows the use of script expressions in its fields. In order to use a certain scripting language in a scriptable data set, a [JSR 223](http://jcp.org/en/jsr/detail?id=223) (Scripting for the Java&trade; Platform") compatible script engine has to exist for that language.
 
 Using the [JRuby](http://jruby.org/) engine e.g., a scriptable data set file could look like this:
 
-```  
-<pre>
-  &lt;dataset&gt;
-    &lt;location num=&quot;jruby:12/2&quot; addr=&quot;jruby:'Webster Street'.reverse&quot; date=&quot;jruby:DateTime::now() - 14&quot;/&gt;
-  &lt;/dataset&gt;
-</pre>
+```
+<dataset>
+    <location num="jruby:12/2" addr="jruby:'Webster Street'.reverse" date="jruby:DateTime::now() - 14" />
+</dataset>
 ```
 
 A ScriptableDataSet can be created as follows:
 
-```  
-<pre>
-  IDataSet wrapped = ...;
-  
-  List&lt;ScriptInvocationHandler&gt; handlers = new ArrayList&lt;Class&lt;? extends ScriptInvocationHandler&gt;&gt;();
-  handlers.add(new JRubyImportAddingInvocationHandler());
-  
-  IDataSet scriptableDS = new ScriptableDataSet(
-    wrapped, new ScriptableDataSetConfig(&quot;jruby&quot;, &quot;jruby:&quot;, handlers));
-</pre>
+```
+IDataSet wrapped = ...;
+
+List<ScriptInvocationHandler> handlers = new ArrayList<Class<? extends ScriptInvocationHandler>>();
+handlers.add(new JRubyImportAddingInvocationHandler());
+
+IDataSet scriptableDS = new ScriptableDataSet(wrapped, new ScriptableDataSetConfig("jruby", "jruby:", handlers));
 ```
 
 where
