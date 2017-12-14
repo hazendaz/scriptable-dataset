@@ -32,15 +32,12 @@ IDataSet wrapped = ...;
 List<ScriptInvocationHandler> handlers = new ArrayList<Class<? extends ScriptInvocationHandler>>();
 handlers.add(new JRubyImportAddingInvocationHandler());
 
-IDataSet scriptableDS = new ScriptableDataSet(wrapped, new ScriptableDataSetConfig("jruby", "jruby:", handlers));
+IDataSet scriptableDS = 
+        new ScriptableDataSet(wrapped, new ScriptableDataSetConfig("jruby", "jruby:", handlers));
 ```
 
 where
 
-```
-<ul>
-    <li><b>jruby</b> is the name of a scripting language as understood by javax.script.ScriptEngineManager</li>
-    <li><b>jruby:</b> is a prefix, that shall precede fields in that scripting language</li>
-    <li><b>handlers</b> is an optional list of ScriptInvocationHandlers, that can be used to pre-process scripts (e.g. to add common imports) and post-process scripts (e.g. to convert results into data types understood by DBUnit).</li>
-</ul>
-```
+    - *jruby* is the name of a scripting language as understood by javax.script.ScriptEngineManager.
+    - *jruby* is a prefix, that shall precede fields in that scripting language.
+    - *handlers* is an optional list of ScriptInvocationHandlers, that can be used to pre-process scripts (e.g. to add common imports) and post-process scripts (e.g. to convert results into data types understood by DBUnit).
