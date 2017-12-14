@@ -18,7 +18,7 @@ package de.gmorling.scriptabledataset;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.dbunit.dataset.AbstractDataSet;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;

@@ -18,8 +18,9 @@ package de.gmorling.scriptabledataset;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import lombok.ToString;
+
+import org.apache.commons.lang3.Validate;
 
 import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
 
@@ -29,6 +30,7 @@ import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
  * 
  * @author Gunnar Morling
  */
+@ToString
 public class ScriptableDataSetConfig {
 
 	private final String prefix;
@@ -90,12 +92,6 @@ public class ScriptableDataSetConfig {
 
 	public List<ScriptInvocationHandler> getHandlers() {
 		return handlers;
-	}
-
-	@Override
-	public String toString() {
-
-		return ReflectionToStringBuilder.toString(this);
 	}
 
 }
