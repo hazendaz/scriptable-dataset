@@ -26,16 +26,13 @@ import org.dbunit.dataset.ITableIterator;
 
 /**
  * <p>
- * An implementation of a <a href="http://www.dbunit.org/">DBUnit</a>
- * <code>IDataSet</code>, that allows the use of script expressions in its
- * fields. In order to use a certain scripting language in a scriptable data
- * set, a <a href="http://jcp.org/en/jsr/detail?id=223">JSR 223</a>
- * (&quot;Scripting for the Java<sup>TM</sup> Platform&quot;) compatible script
- * engine has to exist for that language.
+ * An implementation of a <a href="http://www.dbunit.org/">DBUnit</a> <code>IDataSet</code>, that allows the use of
+ * script expressions in its fields. In order to use a certain scripting language in a scriptable data set, a
+ * <a href="http://jcp.org/en/jsr/detail?id=223">JSR 223</a> (&quot;Scripting for the Java<sup>TM</sup> Platform&quot;)
+ * compatible script engine has to exist for that language.
  * </p>
  * <p>
- * Using the <a href="http://jruby.org/">JRuby</a> engine e.g., a scriptable
- * data set file could look like this:
+ * Using the <a href="http://jruby.org/">JRuby</a> engine e.g., a scriptable data set file could look like this:
  * </p>
  * 
  * <pre>
@@ -58,48 +55,44 @@ import org.dbunit.dataset.ITableIterator;
  * 
  * where
  * <ul>
- * <li><b>jruby</b> is the name of a scripting language as understood by
- * {@link javax.script.ScriptEngineManager}</li>
- * <li><b>jruby:</b> is a prefix, that shall precede fields in that scripting
- * language</li>
- * <li><b>handlers</b> is an optional list of
- * {@link de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler} s, that can be used to pre-process
- * scripts (e.g. to add common imports) and post-process scripts (e.g. to
- * convert results into data types understood by DBUnit).</li>
+ * <li><b>jruby</b> is the name of a scripting language as understood by {@link javax.script.ScriptEngineManager}</li>
+ * <li><b>jruby:</b> is a prefix, that shall precede fields in that scripting language</li>
+ * <li><b>handlers</b> is an optional list of {@link de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler} s,
+ * that can be used to pre-process scripts (e.g. to add common imports) and post-process scripts (e.g. to convert
+ * results into data types understood by DBUnit).</li>
  * </ul>
  * 
  * @author Gunnar Morling
  */
 public class ScriptableDataSet extends AbstractDataSet {
 
-	private IDataSet wrapped;
+    private IDataSet                      wrapped;
 
-	private List<ScriptableDataSetConfig> configurations;
+    private List<ScriptableDataSetConfig> configurations;
 
-	/**
-	 * Creates a new ScriptableDataSet.
-	 * 
-	 * @param wrapped
-	 *            Another data set to be wrapped by this scriptable data set.
-	 *            Must not be null.
-	 * @param configurations
-	 *            At least one scriptable data set configuration.
-	 */
-	public ScriptableDataSet(IDataSet wrapped, ScriptableDataSetConfig... configurations) {
+    /**
+     * Creates a new ScriptableDataSet.
+     * 
+     * @param wrapped
+     *            Another data set to be wrapped by this scriptable data set. Must not be null.
+     * @param configurations
+     *            At least one scriptable data set configuration.
+     */
+    public ScriptableDataSet(IDataSet wrapped, ScriptableDataSetConfig... configurations) {
 
-		Validate.notNull(wrapped);
+        Validate.notNull(wrapped);
 
-		Validate.notNull(configurations);
-		Validate.noNullElements(configurations);
-		Validate.notEmpty(configurations);
+        Validate.notNull(configurations);
+        Validate.noNullElements(configurations);
+        Validate.notEmpty(configurations);
 
-		this.wrapped = wrapped;
-		this.configurations = Arrays.asList(configurations);
-	}
+        this.wrapped = wrapped;
+        this.configurations = Arrays.asList(configurations);
+    }
 
-	@Override
-	protected ITableIterator createIterator(boolean reversed) throws DataSetException {
-		return new ScriptableIterator(reversed ? wrapped.reverseIterator() : wrapped.iterator(), configurations);
-	}
+    @Override
+    protected ITableIterator createIterator(boolean reversed) throws DataSetException {
+        return new ScriptableIterator(reversed ? wrapped.reverseIterator() : wrapped.iterator(), configurations);
+    }
 
 }

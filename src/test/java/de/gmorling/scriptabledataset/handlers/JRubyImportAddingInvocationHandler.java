@@ -21,20 +21,20 @@ import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
 
 public class JRubyImportAddingInvocationHandler implements ScriptInvocationHandler {
 
-	public String getLanguageName() {
-		return "jruby";
-	}
+    public String getLanguageName() {
+        return "jruby";
+    }
 
-	public String preInvoke(String script) {
-		return "require 'bigdecimal'; require 'bigdecimal/math'; include BigMath; " + script;
-	}
+    public String preInvoke(String script) {
+        return "require 'bigdecimal'; require 'bigdecimal/math'; include BigMath; " + script;
+    }
 
-	public Object postInvoke(Object object) {
-		return object;
-	}
+    public Object postInvoke(Object object) {
+        return object;
+    }
 
-	public void setScriptEngine(ScriptEngine engine) {
+    public void setScriptEngine(ScriptEngine engine) {
 
-	}
+    }
 
 }
