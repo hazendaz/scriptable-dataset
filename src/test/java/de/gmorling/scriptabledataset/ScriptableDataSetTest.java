@@ -51,11 +51,11 @@ import org.junit.Test;
  */
 public class ScriptableDataSetTest {
 
-    private static Connection          connection;
+    private static Connection connection;
 
     private static IDatabaseConnection dbUnitConnection;
 
-    private ResultSet                  resultSet;
+    private ResultSet resultSet;
 
     @BeforeClass
     public static void initializeConnection() throws Exception {

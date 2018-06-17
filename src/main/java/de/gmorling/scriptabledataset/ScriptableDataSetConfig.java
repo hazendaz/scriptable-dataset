@@ -32,9 +32,9 @@ import org.apache.commons.lang3.Validate;
 @ToString
 public class ScriptableDataSetConfig {
 
-    private final String                        prefix;
+    private final String prefix;
 
-    private final String                        languageName;
+    private final String languageName;
 
     private final List<ScriptInvocationHandler> handlers = new ArrayList<>();
 

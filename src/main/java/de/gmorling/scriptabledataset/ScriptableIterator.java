@@ -24,7 +24,7 @@ import org.dbunit.dataset.ITableMetaData;
 
 public class ScriptableIterator implements ITableIterator {
 
-    private ITableIterator                wrapped;
+    private ITableIterator wrapped;
 
     private List<ScriptableDataSetConfig> configurations;
 

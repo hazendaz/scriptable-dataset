@@ -41,12 +41,11 @@ import org.slf4j.LoggerFactory;
  */
 public class ScriptableTable implements ITable {
 
-    private final Logger                               logger           = LoggerFactory
-            .getLogger(ScriptableTable.class);
+    private final Logger logger = LoggerFactory.getLogger(ScriptableTable.class);
 
-    private ITable                                     wrapped;
+    private ITable wrapped;
 
-    private Map<String, ScriptEngine>                  enginesByPrefix  = new HashMap<>();
+    private Map<String, ScriptEngine> enginesByPrefix = new HashMap<>();
 
     private Map<String, List<ScriptInvocationHandler>> handlersByPrefix = new HashMap<>();
 
