@@ -15,8 +15,9 @@
  */
 package de.gmorling.scriptabledataset;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import de.gmorling.scriptabledataset.handlers.JRubyImportAddingInvocationHandler;
 import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
@@ -37,11 +38,11 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for ScriptableDataSet.
@@ -57,7 +58,7 @@ public class ScriptableDataSetTest {
 
     private ResultSet resultSet;
 
-    @BeforeClass
+    @BeforeAll
     public static void initializeConnection() throws Exception {
         connection = DriverManager.getConnection("jdbc:derby:derbyTest;create=true");
         connection.setAutoCommit(false);
@@ -65,12 +66,12 @@ public class ScriptableDataSetTest {
         dbUnitConnection = new DatabaseConnection(connection);
     }
 
-    @Before
+    @BeforeEach
     public void createTable() throws Exception {
         connection.createStatement().execute("create table location(num int, addr varchar(40), date timestamp)");
     }
 
-    @After
+    @AfterEach
     public void rollbackTransaction() throws Exception {
         if (resultSet != null) {
             resultSet.close();
@@ -78,7 +79,7 @@ public class ScriptableDataSetTest {
         connection.rollback();
     }
 
-    @AfterClass
+    @AfterAll
     public static void closeConnection() throws Exception {
         dbUnitConnection.close();
     }
@@ -161,13 +162,15 @@ public class ScriptableDataSetTest {
      * @throws Exception
      *             In case of any error.
      */
-    @Test(expected = RuntimeException.class)
+    @Test
     public void unknownScriptingEngine() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
                 new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("unknownscriptingengine.xml")),
                 new ScriptableDataSetConfig("unknown", "unknown:"));
 
-        DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
+        assertThrows(RuntimeException.class, () -> {
+            DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
+        });
     }
 
     private void insertDataSetAndCreateResultSet(IDataSet dataSet) throws DatabaseUnitException, SQLException {
