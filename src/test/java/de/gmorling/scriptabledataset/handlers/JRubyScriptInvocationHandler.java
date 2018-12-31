@@ -15,8 +15,6 @@
  */
 package de.gmorling.scriptabledataset.handlers;
 
-import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
-
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 
