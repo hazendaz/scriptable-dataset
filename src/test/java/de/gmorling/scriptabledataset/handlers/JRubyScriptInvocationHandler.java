@@ -31,14 +31,17 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 
     private ScriptEngine engine;
 
+    @Override
     public String getLanguageName() {
         return "jruby";
     }
 
+    @Override
     public String preInvoke(String script) {
         return "require 'date';" + script;
     }
 
+    @Override
     public Object postInvoke(Object object) {
 
         if (object instanceof RubyObject) {
@@ -59,6 +62,7 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
         return object;
     }
 
+    @Override
     public void setScriptEngine(ScriptEngine engine) {
         this.engine = engine;
     }

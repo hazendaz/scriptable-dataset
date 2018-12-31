@@ -87,23 +87,17 @@ public class ScriptableTable implements ITable {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public int getRowCount() {
         return wrapped.getRowCount();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public ITableMetaData getTableMetaData() {
         return wrapped.getTableMetaData();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public Object getValue(int row, String column) throws DataSetException {
 
         Object theValue = wrapped.getValue(row, column);

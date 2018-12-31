@@ -33,14 +33,17 @@ public class ScriptableIterator implements ITableIterator {
         this.configurations = configurations;
     }
 
+    @Override
     public ITable getTable() throws DataSetException {
         return new ScriptableTable(wrapped.getTable(), configurations);
     }
 
+    @Override
     public ITableMetaData getTableMetaData() throws DataSetException {
         return wrapped.getTableMetaData();
     }
 
+    @Override
     public boolean next() throws DataSetException {
         return wrapped.next();
     }
