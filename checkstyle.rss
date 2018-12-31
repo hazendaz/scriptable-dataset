@@ -23,11 +23,11 @@ under the License.
     <link>http://github.com/hazendaz/scriptable-dataset</link>
     <description>scriptable-dataset - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2011 - 2017 hazendaz</copyright>
+    <copyright>&#169;2011 - 2018 hazendaz</copyright>
     <item>
       <title>File: 6,
              Errors: 0,
-             Warnings: 151,
+             Warnings: 153,
              Infos: 0
       </title>
             <link>http://github.com/hazendaz/scriptable-dataset/checkstyle.html</link>
@@ -52,7 +52,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  23
+                  25
                 </td>
                 <td>
                   0

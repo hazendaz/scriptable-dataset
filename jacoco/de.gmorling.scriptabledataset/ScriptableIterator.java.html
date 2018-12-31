@@ -24,7 +24,7 @@ import org.dbunit.dataset.ITableMetaData;
 
 public class ScriptableIterator implements ITableIterator {
 
-    private ITableIterator                wrapped;
+    private ITableIterator wrapped;
 
     private List&lt;ScriptableDataSetConfig&gt; configurations;
 
@@ -33,17 +33,20 @@ public class ScriptableIterator implements ITableIterator {
 <span class="fc" id="L33">        this.configurations = configurations;</span>
 <span class="fc" id="L34">    }</span>
 
+    @Override
     public ITable getTable() throws DataSetException {
-<span class="fc" id="L37">        return new ScriptableTable(wrapped.getTable(), configurations);</span>
+<span class="fc" id="L38">        return new ScriptableTable(wrapped.getTable(), configurations);</span>
     }
 
+    @Override
     public ITableMetaData getTableMetaData() throws DataSetException {
-<span class="nc" id="L41">        return wrapped.getTableMetaData();</span>
+<span class="nc" id="L43">        return wrapped.getTableMetaData();</span>
     }
 
+    @Override
     public boolean next() throws DataSetException {
-<span class="fc" id="L45">        return wrapped.next();</span>
+<span class="fc" id="L48">        return wrapped.next();</span>
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
