@@ -36,7 +36,7 @@ import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -93,7 +93,7 @@ public class ScriptableDataSetTest {
     @Test
     public void jRubyScript() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
-                new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("jruby.xml")),
+                new FlatXmlDataSetBuilder().build(ScriptableDataSetTest.class.getResourceAsStream("jruby.xml")),
                 new ScriptableDataSetConfig("jruby", "jruby:"));
 
         insertDataSetAndCreateResultSet(dataSet);
@@ -110,7 +110,7 @@ public class ScriptableDataSetTest {
     @Test
     public void groovyScript() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
-                new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("groovy.xml")),
+                new FlatXmlDataSetBuilder().build(ScriptableDataSetTest.class.getResourceAsStream("groovy.xml")),
                 new ScriptableDataSetConfig("groovy", "groovy:"));
 
         insertDataSetAndCreateResultSet(dataSet);
@@ -127,7 +127,8 @@ public class ScriptableDataSetTest {
     @Test
     public void dataSetWithMultipleLanguages() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
-                new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("multiple_languages.xml")),
+                new FlatXmlDataSetBuilder()
+                        .build(ScriptableDataSetTest.class.getResourceAsStream("multiple_languages.xml")),
                 new ScriptableDataSetConfig("jruby", "jruby:"), new ScriptableDataSetConfig("groovy", "groovy:"));
 
         insertDataSetAndCreateResultSet(dataSet);
@@ -148,7 +149,7 @@ public class ScriptableDataSetTest {
         handlers.add(new JRubyImportAddingInvocationHandler());
 
         IDataSet dataSet = new ScriptableDataSet(
-                new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("customhandler.xml")),
+                new FlatXmlDataSetBuilder().build(ScriptableDataSetTest.class.getResourceAsStream("customhandler.xml")),
                 new ScriptableDataSetConfig("jruby", "jruby:", handlers));
 
         insertDataSetAndCreateResultSet(dataSet);
@@ -165,7 +166,8 @@ public class ScriptableDataSetTest {
     @Test
     public void unknownScriptingEngine() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
-                new FlatXmlDataSet(ScriptableDataSetTest.class.getResourceAsStream("unknownscriptingengine.xml")),
+                new FlatXmlDataSetBuilder()
+                        .build(ScriptableDataSetTest.class.getResourceAsStream("unknownscriptingengine.xml")),
                 new ScriptableDataSetConfig("unknown", "unknown:"));
 
         assertThrows(RuntimeException.class, () -> {
