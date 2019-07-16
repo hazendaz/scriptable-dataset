@@ -130,6 +130,7 @@
 
     <build>
         <plugins>
+            <!-- TODO: Remove plugin override after base-parent 22 upgrade -->
             <plugin>
                 <groupId>net.revelc.code</groupId>
                 <artifactId>impsort-maven-plugin</artifactId>
