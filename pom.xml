@@ -101,9 +101,18 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.14.2.0</version>
+            <version>10.14.2.0</version> <!-- TODO: Upgrade to '10.15.1.3' requires jdk 9 only for build -->
             <scope>test</scope>
         </dependency>
+        <!-- TODO: Add once we build only with jdk9+ -->
+        <!--
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyshared</artifactId>
+            <version>10.15.1.3</version>
+            <scope>test</scope>
+        </dependency>
+        -->
 
         <dependency>
             <groupId>org.jruby</groupId>
