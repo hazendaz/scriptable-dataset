@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,9 +23,9 @@ import org.jruby.RubyObject;
 /**
  * A <code>ScriptInvocationHandler</code> for JRuby scripts. It adds some commonly used imports to the begin of each
  * script and converts Objects returned by the scripting engine into types processable by DBUnit.
- * 
+ *
  * @author Gunnar Morling
- * 
+ *
  */
 public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 

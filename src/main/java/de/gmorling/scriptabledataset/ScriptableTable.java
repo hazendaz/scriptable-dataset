@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * ITable implementation, that allows the usage of script statements as field values.
- * 
+ *
  * @author Gunnar Morling
  */
 public class ScriptableTable implements ITable {
@@ -51,7 +51,7 @@ public class ScriptableTable implements ITable {
 
     /**
      * Creates a new ScriptableTable.
-     * 
+     *
      * @param wrapped
      *            The ITable to be wrapped by this scriptable table. May not be null.
      * @param configurations
@@ -149,7 +149,7 @@ public class ScriptableTable implements ITable {
     /**
      * Returns a list with all standard handlers registered for the language of the config and all handlers declared in
      * the config itself.
-     * 
+     *
      * @param config
      *            A config object.
      * @return A list with handlers. Never null.
