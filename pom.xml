@@ -63,7 +63,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.8.0-beta2</version>
+            <version>1.8.0-beta4</version>
         </dependency>
         <dependency>
             <groupId>org.dbunit</groupId>
@@ -92,7 +92,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.8.0-beta2</version>
+            <version>1.8.0-beta4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
