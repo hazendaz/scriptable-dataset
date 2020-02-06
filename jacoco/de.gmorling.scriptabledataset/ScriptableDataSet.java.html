@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,25 +34,25 @@ import org.dbunit.dataset.ITableIterator;
  * &lt;p&gt;
  * Using the &lt;a href=&quot;http://jruby.org/&quot;&gt;JRuby&lt;/a&gt; engine e.g., a scriptable data set file could look like this:
  * &lt;/p&gt;
- * 
+ *
  * &lt;pre&gt;
  * &amp;lt;dataset&amp;gt;
  *     &amp;lt;location num=&amp;quot;jruby:12/2&amp;quot; addr=&amp;quot;jruby:'Webster Street'.reverse&amp;quot; date=&amp;quot;jruby:DateTime::now() - 14&amp;quot;/&amp;gt;
  * &amp;lt;/dataset&amp;gt;
  * &lt;/pre&gt;
- * 
+ *
  * A ScriptableDataSet can be created as follows:
- * 
+ *
  * &lt;pre&gt;
  * IDataSet wrapped = ...;
- * 
+ *
  * List&amp;lt;ScriptInvocationHandler&amp;gt; handlers = new ArrayList&amp;lt;Class&amp;lt;? extends ScriptInvocationHandler&amp;gt;&amp;gt;();
  * handlers.add(new JRubyImportAddingInvocationHandler());
- * 
+ *
  * IDataSet scriptableDS = new ScriptableDataSet(
  *      wrapped, new ScriptableDataSetConfig(&amp;quot;jruby&amp;quot;, &amp;quot;jruby:&amp;quot;, handlers));
  * &lt;/pre&gt;
- * 
+ *
  * where
  * &lt;ul&gt;
  * &lt;li&gt;&lt;b&gt;jruby&lt;/b&gt; is the name of a scripting language as understood by {@link javax.script.ScriptEngineManager}&lt;/li&gt;
@@ -61,7 +61,7 @@ import org.dbunit.dataset.ITableIterator;
  * that can be used to pre-process scripts (e.g. to add common imports) and post-process scripts (e.g. to convert
  * results into data types understood by DBUnit).&lt;/li&gt;
  * &lt;/ul&gt;
- * 
+ *
  * @author Gunnar Morling
  */
 public class ScriptableDataSet extends AbstractDataSet {
@@ -72,7 +72,7 @@ public class ScriptableDataSet extends AbstractDataSet {
 
     /**
      * Creates a new ScriptableDataSet.
-     * 
+     *
      * @param wrapped
      *            Another data set to be wrapped by this scriptable data set. Must not be null.
      * @param configurations
@@ -96,4 +96,4 @@ public class ScriptableDataSet extends AbstractDataSet {
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
