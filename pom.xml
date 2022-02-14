@@ -42,9 +42,9 @@
     </ciManagement>
     <distributionManagement>
         <site>
-            <id>gh-pages</id>
-            <name>GitHub Pages</name>
-            <url>github:https://hazendaz.github.io/scriptable-dataset/</url>
+            <id>gh-pages-scm</id>
+            <name>gh-pages-scm</name>
+            <url>scm:git:ssh://github.com/hazendaz/scriptable-dataset.git</url>
         </site>
     </distributionManagement>
 
