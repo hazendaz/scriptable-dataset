@@ -5,3 +5,5 @@ derby.log
 .classpath
 .project
 .mvn/wrapper/maven-wrapper.jar
+*.releaseBackup
+release.properties
