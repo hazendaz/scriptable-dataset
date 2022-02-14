@@ -37,8 +37,8 @@
         <url>https://github.com/hazendaz/scriptable-dataset/issues</url>
     </issueManagement>
     <ciManagement>
-        <system>Travis CI</system>
-        <url>https://travis-ci.org/hazendaz/scriptable-dataset</url>
+        <system>GitHub Actions</system>
+        <url>https://github.com/hazendaz/scriptable-dataset/actions</url>
     </ciManagement>
     <distributionManagement>
         <site>
