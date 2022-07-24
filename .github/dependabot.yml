@@ -1,12 +1,12 @@
 version: 2
 updates:
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
 - package-ecosystem: maven
   directory: "/"
   schedule:
     interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: org.apache.derby:derby
-    versions:
-    - "> 10.14.2.0"
