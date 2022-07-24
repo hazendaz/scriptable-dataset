@@ -77,6 +77,7 @@ public class StandardHandlerConfig {
      *
      * @param language
      *            the language
+     *
      * @return the standard handlers by language
      */
     public static List<ScriptInvocationHandler> getStandardHandlersByLanguage(String language) {

@@ -44,6 +44,7 @@ public interface ScriptInvocationHandler {
      *
      * @param script
      *            The script to be executed.
+     *
      * @return The script to be executed, enriched with common imports for example.
      */
     String preInvoke(String script);
@@ -53,6 +54,7 @@ public interface ScriptInvocationHandler {
      *
      * @param object
      *            The result of the script execution.
+     *
      * @return The result of the script execution, possibly modified by this handler.
      */
     Object postInvoke(Object object);

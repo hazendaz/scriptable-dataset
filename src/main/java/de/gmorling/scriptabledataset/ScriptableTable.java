@@ -152,6 +152,7 @@ public class ScriptableTable implements ITable {
      *
      * @param config
      *            A config object.
+     *
      * @return A list with handlers. Never null.
      */
     private List<ScriptInvocationHandler> getAllHandlers(ScriptableDataSetConfig config) {

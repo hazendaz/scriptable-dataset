@@ -25,7 +25,6 @@ import org.jruby.RubyObject;
  * script and converts Objects returned by the scripting engine into types processable by DBUnit.
  *
  * @author Gunnar Morling
- *
  */
 public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 

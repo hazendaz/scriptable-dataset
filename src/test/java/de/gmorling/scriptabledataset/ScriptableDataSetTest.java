@@ -48,7 +48,6 @@ import org.junit.jupiter.api.Test;
  * Test for ScriptableDataSet.
  *
  * @author Gunnar Morling
- *
  */
 public class ScriptableDataSetTest {
 
