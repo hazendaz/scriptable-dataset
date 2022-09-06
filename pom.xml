@@ -90,13 +90,19 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.16.1.1</version>
+            <version>10.15.2.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyshared</artifactId>
-            <version>10.16.1.1</version>
+            <version>10.15.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyoptionaltools</artifactId>
+            <version>10.15.2.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -139,6 +145,8 @@
                                 <excludes>
                                     <exclude>org.apache.derby:derby</exclude>
                                     <exclude>org.apache.derby:derbyshared</exclude>
+                                    <exclude>org.apache.derby:derbytools</exclude>
+                                    <exclude>org.apache.derby:derbyoptionaltools</exclude>
                                 </excludes>
                             </enforceBytecodeVersion>
                         </rules>
