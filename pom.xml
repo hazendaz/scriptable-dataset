@@ -114,7 +114,7 @@
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby-complete</artifactId>
-            <version>9.4.0.0</version>
+            <version>9.4.1.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
