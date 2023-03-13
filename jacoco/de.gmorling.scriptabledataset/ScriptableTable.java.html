@@ -152,19 +152,20 @@ public class ScriptableTable implements ITable {
      *
      * @param config
      *            A config object.
+     *
      * @return A list with handlers. Never null.
      */
     private List&lt;ScriptInvocationHandler&gt; getAllHandlers(ScriptableDataSetConfig config) {
 
-<span class="fc" id="L159">        List&lt;ScriptInvocationHandler&gt; theValue = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L160">        List&lt;ScriptInvocationHandler&gt; theValue = new ArrayList&lt;&gt;();</span>
 
         // standard handlers for the language
-<span class="fc" id="L162">        theValue.addAll(StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));</span>
+<span class="fc" id="L163">        theValue.addAll(StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));</span>
 
         // custom handlers
-<span class="fc" id="L165">        theValue.addAll(config.getHandlers());</span>
+<span class="fc" id="L166">        theValue.addAll(config.getHandlers());</span>
 
-<span class="fc" id="L167">        return theValue;</span>
+<span class="fc" id="L168">        return theValue;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
