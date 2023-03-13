@@ -27,7 +27,7 @@
     </licenses>
 
     <scm>
-        <url>http://github.com/hazendaz/scriptable-dataset</url>
+        <url>https://github.com/hazendaz/scriptable-dataset</url>
         <connection>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</developerConnection>
         <tag>HEAD</tag>
