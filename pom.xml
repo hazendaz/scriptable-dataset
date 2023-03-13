@@ -28,7 +28,7 @@
 
     <scm>
         <url>http://github.com/hazendaz/scriptable-dataset</url>
-        <connection>scm:git:ssh://github.com/hazendaz/scriptable-dataset.git</connection>
+        <connection>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
@@ -44,7 +44,7 @@
         <site>
             <id>gh-pages-scm</id>
             <name>gh-pages-scm</name>
-            <url>scm:git:ssh://github.com/hazendaz/scriptable-dataset.git</url>
+            <url>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</url>
         </site>
     </distributionManagement>
 
