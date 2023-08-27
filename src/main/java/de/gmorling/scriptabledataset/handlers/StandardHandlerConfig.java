@@ -34,8 +34,12 @@ import org.slf4j.LoggerFactory;
  */
 public class StandardHandlerConfig {
 
+    /** The standard handlers. */
     private static Map<String, List<ScriptInvocationHandler>> standardHandlers;
 
+    /**
+     * Instantiates a new standard handler config.
+     */
     private StandardHandlerConfig() {
         // Prevent Instantiation
     }

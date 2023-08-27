@@ -50,12 +50,21 @@ import org.junit.jupiter.api.Test;
  */
 public class ScriptableDataSetTest {
 
+    /** The connection. */
     private static Connection connection;
 
+    /** The db unit connection. */
     private static IDatabaseConnection dbUnitConnection;
 
+    /** The result set. */
     private ResultSet resultSet;
 
+    /**
+     * Initialize connection.
+     *
+     * @throws Exception
+     *             the exception
+     */
     @BeforeAll
     public static void initializeConnection() throws Exception {
         connection = DriverManager.getConnection("jdbc:derby:derbyTest;create=true");
@@ -64,11 +73,23 @@ public class ScriptableDataSetTest {
         dbUnitConnection = new DatabaseConnection(connection);
     }
 
+    /**
+     * Creates the table.
+     *
+     * @throws Exception
+     *             the exception
+     */
     @BeforeEach
     public void createTable() throws Exception {
         connection.createStatement().execute("create table location(num int, addr varchar(40), date timestamp)");
     }
 
+    /**
+     * Rollback transaction.
+     *
+     * @throws Exception
+     *             the exception
+     */
     @AfterEach
     public void rollbackTransaction() throws Exception {
         if (resultSet != null) {
@@ -77,6 +98,12 @@ public class ScriptableDataSetTest {
         connection.rollback();
     }
 
+    /**
+     * Close connection.
+     *
+     * @throws Exception
+     *             the exception
+     */
     @AfterAll
     public static void closeConnection() throws Exception {
         dbUnitConnection.close();
@@ -173,11 +200,37 @@ public class ScriptableDataSetTest {
         });
     }
 
+    /**
+     * Insert data set and create result set.
+     *
+     * @param dataSet
+     *            the data set
+     *
+     * @throws DatabaseUnitException
+     *             the database unit exception
+     * @throws SQLException
+     *             the SQL exception
+     */
     private void insertDataSetAndCreateResultSet(IDataSet dataSet) throws DatabaseUnitException, SQLException {
         DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
         resultSet = connection.createStatement().executeQuery("SELECT num, addr, date FROM location ORDER BY num");
     }
 
+    /**
+     * Assert next row.
+     *
+     * @param rs
+     *            the rs
+     * @param expectedInt
+     *            the expected int
+     * @param expectedString
+     *            the expected string
+     * @param expectedDate
+     *            the expected date
+     *
+     * @throws SQLException
+     *             the SQL exception
+     */
     private void assertNextRow(ResultSet rs, int expectedInt, String expectedString, Date expectedDate)
             throws SQLException {
         if (!rs.next()) {
@@ -190,6 +243,14 @@ public class ScriptableDataSetTest {
                 DateUtils.truncate(rs.getObject(3), Calendar.DATE));
     }
 
+    /**
+     * Adds the days to today.
+     *
+     * @param numberOfDays
+     *            the number of days
+     *
+     * @return the date
+     */
     private Date addDaysToToday(int numberOfDays) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, numberOfDays);

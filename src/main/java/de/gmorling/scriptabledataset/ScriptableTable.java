@@ -40,12 +40,16 @@ import org.slf4j.LoggerFactory;
  */
 public class ScriptableTable implements ITable {
 
+    /** The logger. */
     private final Logger logger = LoggerFactory.getLogger(ScriptableTable.class);
 
+    /** The wrapped. */
     private ITable wrapped;
 
+    /** The engines by prefix. */
     private Map<String, ScriptEngine> enginesByPrefix = new HashMap<>();
 
+    /** The handlers by prefix. */
     private Map<String, List<ScriptInvocationHandler>> handlersByPrefix = new HashMap<>();
 
     /**

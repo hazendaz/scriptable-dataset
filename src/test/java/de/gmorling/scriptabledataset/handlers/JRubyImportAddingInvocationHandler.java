@@ -16,6 +16,9 @@ package de.gmorling.scriptabledataset.handlers;
 
 import javax.script.ScriptEngine;
 
+/**
+ * The Class JRubyImportAddingInvocationHandler.
+ */
 public class JRubyImportAddingInvocationHandler implements ScriptInvocationHandler {
 
     @Override

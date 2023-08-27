@@ -65,8 +65,10 @@ import org.dbunit.dataset.ITableIterator;
  */
 public class ScriptableDataSet extends AbstractDataSet {
 
+    /** The wrapped. */
     private IDataSet wrapped;
 
+    /** The configurations. */
     private List<ScriptableDataSetConfig> configurations;
 
     /**

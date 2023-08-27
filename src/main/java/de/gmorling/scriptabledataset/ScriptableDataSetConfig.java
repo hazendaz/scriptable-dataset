@@ -31,10 +31,13 @@ import org.apache.commons.lang3.Validate;
 @ToString
 public class ScriptableDataSetConfig {
 
+    /** The prefix. */
     private final String prefix;
 
+    /** The language name. */
     private final String languageName;
 
+    /** The handlers. */
     private final List<ScriptInvocationHandler> handlers = new ArrayList<>();
 
     /**
@@ -78,14 +81,29 @@ public class ScriptableDataSetConfig {
         }
     }
 
+    /**
+     * Gets the prefix.
+     *
+     * @return the prefix
+     */
     public String getPrefix() {
         return prefix;
     }
 
+    /**
+     * Gets the language name.
+     *
+     * @return the language name
+     */
     public String getLanguageName() {
         return languageName;
     }
 
+    /**
+     * Gets the handlers.
+     *
+     * @return the handlers
+     */
     public List<ScriptInvocationHandler> getHandlers() {
         return handlers;
     }

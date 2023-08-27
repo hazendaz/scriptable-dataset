@@ -21,12 +21,25 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ITableIterator;
 import org.dbunit.dataset.ITableMetaData;
 
+/**
+ * The Class ScriptableIterator.
+ */
 public class ScriptableIterator implements ITableIterator {
 
+    /** The wrapped. */
     private ITableIterator wrapped;
 
+    /** The configurations. */
     private List<ScriptableDataSetConfig> configurations;
 
+    /**
+     * Instantiates a new scriptable iterator.
+     *
+     * @param wrapped
+     *            the wrapped
+     * @param configurations
+     *            the configurations
+     */
     public ScriptableIterator(ITableIterator wrapped, List<ScriptableDataSetConfig> configurations) {
         this.wrapped = wrapped;
         this.configurations = configurations;

@@ -27,6 +27,7 @@ import org.jruby.RubyObject;
  */
 public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 
+    /** The engine. */
     private ScriptEngine engine;
 
     @Override
