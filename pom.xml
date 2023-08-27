@@ -173,6 +173,21 @@
                         </rules>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license.plugin}</version>
+                    <configuration>
+                        <licenseSets>
+                            <licenseSet>
+                                <excludes>
+                                    <exclude>derbyTest/**</exclude>
+                                </excludes>
+                            </licenseSet>
+                        </licenseSets>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
