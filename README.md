@@ -1,6 +1,6 @@
 # scriptable-dataset #
- 
-[![Build Status](https://travis-ci.org/hazendaz/scriptable-dataset.svg?branch=master)](https://travis-ci.org/hazendaz/scriptable-dataset)
+
+[![Java CI](https://github.com/hazendaz/scriptable-dataset/workflows/Java%20CI/badge.svg)](https://github.com/hazendaz/scriptable-dataset/actions?query=workflow%3A%22Java+CI%22)
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.hazendaz/scriptable-dataset/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hazendaz/scriptable-dataset)
 [![Apache 2](http://img.shields.io/badge/license-Apache%202-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
