@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptableDataSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scriptable-dataset</a> &gt; <a href="index.source.html" class="el_package">de.gmorling.scriptabledataset</a> &gt; <span class="el_source">ScriptableDataSet.java</span></div><h1>ScriptableDataSet.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2008-2009, Gunnar Morling
+ * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Copyright 2011-2023 Hazendaz.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of The Apache Software License,
+ * Version 2.0 which accompanies this distribution, and is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.txt
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Contributors:
+ *     Gunnar Morling
+ *     Hazendaz (Jeremy Landis).
  */
 package de.gmorling.scriptabledataset;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
 import org.dbunit.dataset.AbstractDataSet;
@@ -66,8 +66,10 @@ import org.dbunit.dataset.ITableIterator;
  */
 public class ScriptableDataSet extends AbstractDataSet {
 
+    /** The wrapped. */
     private IDataSet wrapped;
 
+    /** The configurations. */
     private List&lt;ScriptableDataSetConfig&gt; configurations;
 
     /**
@@ -78,22 +80,22 @@ public class ScriptableDataSet extends AbstractDataSet {
      * @param configurations
      *            At least one scriptable data set configuration.
      */
-<span class="fc" id="L81">    public ScriptableDataSet(IDataSet wrapped, ScriptableDataSetConfig... configurations) {</span>
+<span class="fc" id="L83">    public ScriptableDataSet(IDataSet wrapped, ScriptableDataSetConfig... configurations) {</span>
 
-<span class="fc" id="L83">        Validate.notNull(wrapped);</span>
+<span class="fc" id="L85">        Objects.requireNonNull(wrapped);</span>
 
-<span class="fc" id="L85">        Validate.notNull(configurations);</span>
-<span class="fc" id="L86">        Validate.noNullElements(configurations);</span>
-<span class="fc" id="L87">        Validate.notEmpty(configurations);</span>
+<span class="fc" id="L87">        Objects.requireNonNull(configurations);</span>
+<span class="fc" id="L88">        Validate.noNullElements(configurations);</span>
+<span class="fc" id="L89">        Validate.notEmpty(configurations);</span>
 
-<span class="fc" id="L89">        this.wrapped = wrapped;</span>
-<span class="fc" id="L90">        this.configurations = Arrays.asList(configurations);</span>
-<span class="fc" id="L91">    }</span>
+<span class="fc" id="L91">        this.wrapped = wrapped;</span>
+<span class="fc" id="L92">        this.configurations = Arrays.asList(configurations);</span>
+<span class="fc" id="L93">    }</span>
 
     @Override
     protected ITableIterator createIterator(boolean reversed) throws DataSetException {
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        return new ScriptableIterator(reversed ? wrapped.reverseIterator() : wrapped.iterator(), configurations);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        return new ScriptableIterator(reversed ? wrapped.reverseIterator() : wrapped.iterator(), configurations);</span>
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

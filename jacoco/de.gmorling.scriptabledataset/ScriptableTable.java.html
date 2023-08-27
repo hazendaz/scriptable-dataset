@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptableTable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scriptable-dataset</a> &gt; <a href="index.source.html" class="el_package">de.gmorling.scriptabledataset</a> &gt; <span class="el_source">ScriptableTable.java</span></div><h1>ScriptableTable.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2008-2009, Gunnar Morling
+ * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Copyright 2011-2023 Hazendaz.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of The Apache Software License,
+ * Version 2.0 which accompanies this distribution, and is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.txt
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Contributors:
+ *     Gunnar Morling
+ *     Hazendaz (Jeremy Landis).
  */
 package de.gmorling.scriptabledataset;
 
@@ -41,13 +40,17 @@ import org.slf4j.LoggerFactory;
  */
 public class ScriptableTable implements ITable {
 
+    /** The logger. */
 <span class="fc" id="L44">    private final Logger logger = LoggerFactory.getLogger(ScriptableTable.class);</span>
 
+    /** The wrapped. */
     private ITable wrapped;
 
-<span class="fc" id="L48">    private Map&lt;String, ScriptEngine&gt; enginesByPrefix = new HashMap&lt;&gt;();</span>
+    /** The engines by prefix. */
+<span class="fc" id="L50">    private Map&lt;String, ScriptEngine&gt; enginesByPrefix = new HashMap&lt;&gt;();</span>
 
-<span class="fc" id="L50">    private Map&lt;String, List&lt;ScriptInvocationHandler&gt;&gt; handlersByPrefix = new HashMap&lt;&gt;();</span>
+    /** The handlers by prefix. */
+<span class="fc" id="L53">    private Map&lt;String, List&lt;ScriptInvocationHandler&gt;&gt; handlersByPrefix = new HashMap&lt;&gt;();</span>
 
     /**
      * Creates a new ScriptableTable.
@@ -57,93 +60,93 @@ public class ScriptableTable implements ITable {
      * @param configurations
      *            An list with configurations
      */
-<span class="fc" id="L60">    public ScriptableTable(ITable wrapped, List&lt;ScriptableDataSetConfig&gt; configurations) {</span>
+<span class="fc" id="L63">    public ScriptableTable(ITable wrapped, List&lt;ScriptableDataSetConfig&gt; configurations) {</span>
 
-<span class="fc" id="L62">        this.wrapped = wrapped;</span>
+<span class="fc" id="L65">        this.wrapped = wrapped;</span>
 
-<span class="fc" id="L64">        ScriptEngineManager manager = new ScriptEngineManager();</span>
+<span class="fc" id="L67">        ScriptEngineManager manager = new ScriptEngineManager();</span>
 
         // load the engines
-<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (ScriptableDataSetConfig oneConfig : configurations) {</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        for (ScriptableDataSetConfig oneConfig : configurations) {</span>
 
-<span class="fc" id="L69">            ScriptEngine engine = manager.getEngineByName(oneConfig.getLanguageName());</span>
+<span class="fc" id="L72">            ScriptEngine engine = manager.getEngineByName(oneConfig.getLanguageName());</span>
 
-<span class="fc bfc" id="L71" title="All 2 branches covered.">            if (engine != null) {</span>
-<span class="fc" id="L72">                enginesByPrefix.put(oneConfig.getPrefix(), engine);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            if (engine != null) {</span>
+<span class="fc" id="L75">                enginesByPrefix.put(oneConfig.getPrefix(), engine);</span>
 
-<span class="fc" id="L74">                List&lt;ScriptInvocationHandler&gt; handlers = getAllHandlers(oneConfig);</span>
+<span class="fc" id="L77">                List&lt;ScriptInvocationHandler&gt; handlers = getAllHandlers(oneConfig);</span>
 
-<span class="fc bfc" id="L76" title="All 2 branches covered.">                for (ScriptInvocationHandler oneHandler : handlers) {</span>
-<span class="fc" id="L77">                    oneHandler.setScriptEngine(engine);</span>
-<span class="fc" id="L78">                }</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">                for (ScriptInvocationHandler oneHandler : handlers) {</span>
+<span class="fc" id="L80">                    oneHandler.setScriptEngine(engine);</span>
+<span class="fc" id="L81">                }</span>
 
-<span class="fc" id="L80">                handlersByPrefix.put(oneConfig.getPrefix(), handlers);</span>
+<span class="fc" id="L83">                handlersByPrefix.put(oneConfig.getPrefix(), handlers);</span>
 
-<span class="fc" id="L82">                logger.info(&quot;Registered scripting engine {} for language {}.&quot;, engine, oneConfig.getLanguageName());</span>
-<span class="fc" id="L83">            } else {</span>
-<span class="fc" id="L84">                throw new RuntimeException(</span>
-<span class="fc" id="L85">                        &quot;No scripting engine found for language \&quot;&quot; + oneConfig.getLanguageName() + &quot;\&quot;.&quot;);</span>
+<span class="fc" id="L85">                logger.info(&quot;Registered scripting engine {} for language {}.&quot;, engine, oneConfig.getLanguageName());</span>
+<span class="fc" id="L86">            } else {</span>
+<span class="fc" id="L87">                throw new RuntimeException(</span>
+<span class="fc" id="L88">                        &quot;No scripting engine found for language \&quot;&quot; + oneConfig.getLanguageName() + &quot;\&quot;.&quot;);</span>
             }
-<span class="fc" id="L87">        }</span>
-<span class="fc" id="L88">    }</span>
+<span class="fc" id="L90">        }</span>
+<span class="fc" id="L91">    }</span>
 
     @Override
     public int getRowCount() {
-<span class="nc" id="L92">        return wrapped.getRowCount();</span>
+<span class="nc" id="L95">        return wrapped.getRowCount();</span>
     }
 
     @Override
     public ITableMetaData getTableMetaData() {
-<span class="fc" id="L97">        return wrapped.getTableMetaData();</span>
+<span class="fc" id="L100">        return wrapped.getTableMetaData();</span>
     }
 
     @Override
     public Object getValue(int row, String column) throws DataSetException {
 
-<span class="fc" id="L103">        Object theValue = wrapped.getValue(row, column);</span>
+<span class="fc" id="L106">        Object theValue = wrapped.getValue(row, column);</span>
 
         // only strings can be processed
-<span class="pc bpc" id="L106" title="1 of 2 branches missed.">        if (theValue instanceof String) {</span>
-<span class="fc" id="L107">            String script = (String) theValue;</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (theValue instanceof String) {</span>
+<span class="fc" id="L110">            String script = (String) theValue;</span>
 
-<span class="fc bfc" id="L109" title="All 2 branches covered.">            for (Entry&lt;String, ScriptEngine&gt; oneEntry : enginesByPrefix.entrySet()) {</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">            for (Entry&lt;String, ScriptEngine&gt; oneEntry : enginesByPrefix.entrySet()) {</span>
 
-<span class="fc" id="L111">                String prefix = oneEntry.getKey();</span>
+<span class="fc" id="L114">                String prefix = oneEntry.getKey();</span>
 
                 // found engine for prefix
-<span class="fc bfc" id="L114" title="All 2 branches covered.">                if (script.startsWith(prefix)) {</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">                if (script.startsWith(prefix)) {</span>
 
-<span class="fc" id="L116">                    ScriptEngine engine = oneEntry.getValue();</span>
-<span class="fc" id="L117">                    script = script.substring(prefix.length());</span>
+<span class="fc" id="L119">                    ScriptEngine engine = oneEntry.getValue();</span>
+<span class="fc" id="L120">                    script = script.substring(prefix.length());</span>
 
-<span class="fc" id="L119">                    List&lt;ScriptInvocationHandler&gt; handlers = handlersByPrefix.get(oneEntry.getKey());</span>
+<span class="fc" id="L122">                    List&lt;ScriptInvocationHandler&gt; handlers = handlersByPrefix.get(oneEntry.getKey());</span>
 
                     try {
 
                         // preInvoke
-<span class="fc bfc" id="L124" title="All 2 branches covered.">                        for (ScriptInvocationHandler handler : handlers) {</span>
-<span class="fc" id="L125">                            script = handler.preInvoke(script);</span>
-<span class="fc" id="L126">                        }</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">                        for (ScriptInvocationHandler handler : handlers) {</span>
+<span class="fc" id="L128">                            script = handler.preInvoke(script);</span>
+<span class="fc" id="L129">                        }</span>
 
-<span class="fc" id="L128">                        logger.debug(&quot;Executing script: {}&quot;, script);</span>
+<span class="fc" id="L131">                        logger.debug(&quot;Executing script: {}&quot;, script);</span>
 
                         // the actual script evaluation
-<span class="fc" id="L131">                        theValue = engine.eval(script);</span>
+<span class="fc" id="L134">                        theValue = engine.eval(script);</span>
 
                         // call postInvoke in reversed order
-<span class="fc" id="L134">                        Collections.reverse(handlers);</span>
-<span class="fc bfc" id="L135" title="All 2 branches covered.">                        for (ScriptInvocationHandler handler : handlers) {</span>
-<span class="fc" id="L136">                            theValue = handler.postInvoke(theValue);</span>
-<span class="fc" id="L137">                        }</span>
+<span class="fc" id="L137">                        Collections.reverse(handlers);</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">                        for (ScriptInvocationHandler handler : handlers) {</span>
+<span class="fc" id="L139">                            theValue = handler.postInvoke(theValue);</span>
+<span class="fc" id="L140">                        }</span>
 
-<span class="nc" id="L139">                    } catch (Exception e) {</span>
-<span class="nc" id="L140">                        throw new RuntimeException(e);</span>
-<span class="fc" id="L141">                    }</span>
+<span class="nc" id="L142">                    } catch (Exception e) {</span>
+<span class="nc" id="L143">                        throw new RuntimeException(e);</span>
+<span class="fc" id="L144">                    }</span>
                 }
-<span class="fc" id="L143">            }</span>
+<span class="fc" id="L146">            }</span>
         }
 
-<span class="fc" id="L146">        return theValue;</span>
+<span class="fc" id="L149">        return theValue;</span>
     }
 
     /**
@@ -157,15 +160,15 @@ public class ScriptableTable implements ITable {
      */
     private List&lt;ScriptInvocationHandler&gt; getAllHandlers(ScriptableDataSetConfig config) {
 
-<span class="fc" id="L160">        List&lt;ScriptInvocationHandler&gt; theValue = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L163">        List&lt;ScriptInvocationHandler&gt; theValue = new ArrayList&lt;&gt;();</span>
 
         // standard handlers for the language
-<span class="fc" id="L163">        theValue.addAll(StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));</span>
+<span class="fc" id="L166">        theValue.addAll(StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));</span>
 
         // custom handlers
-<span class="fc" id="L166">        theValue.addAll(config.getHandlers());</span>
+<span class="fc" id="L169">        theValue.addAll(config.getHandlers());</span>
 
-<span class="fc" id="L168">        return theValue;</span>
+<span class="fc" id="L171">        return theValue;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
