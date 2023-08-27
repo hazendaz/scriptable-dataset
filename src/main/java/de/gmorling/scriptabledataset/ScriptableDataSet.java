@@ -16,6 +16,7 @@ package de.gmorling.scriptabledataset;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
 import org.dbunit.dataset.AbstractDataSet;
@@ -81,9 +82,9 @@ public class ScriptableDataSet extends AbstractDataSet {
      */
     public ScriptableDataSet(IDataSet wrapped, ScriptableDataSetConfig... configurations) {
 
-        Validate.notNull(wrapped);
+        Objects.requireNonNull(wrapped);
 
-        Validate.notNull(configurations);
+        Objects.requireNonNull(configurations);
         Validate.noNullElements(configurations);
         Validate.notEmpty(configurations);
 

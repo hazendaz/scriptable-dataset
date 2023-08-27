@@ -18,10 +18,9 @@ import de.gmorling.scriptabledataset.handlers.ScriptInvocationHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.ToString;
-
-import org.apache.commons.lang3.Validate;
 
 /**
  * Configures the usage of one scripting language with a prefix and a list of invocation handlers.
@@ -70,8 +69,8 @@ public class ScriptableDataSetConfig {
 
         super();
 
-        Validate.notNull(languageName);
-        Validate.notNull(prefix);
+        Objects.requireNonNull(languageName);
+        Objects.requireNonNull(prefix);
 
         this.prefix = prefix;
         this.languageName = languageName;
