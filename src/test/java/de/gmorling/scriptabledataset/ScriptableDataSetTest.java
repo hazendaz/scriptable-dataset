@@ -66,7 +66,7 @@ public class ScriptableDataSetTest {
      *             the exception
      */
     @BeforeAll
-    public static void initializeConnection() throws Exception {
+    static void initializeConnection() throws Exception {
         connection = DriverManager.getConnection("jdbc:derby:derbyTest;create=true");
         connection.setAutoCommit(false);
 
@@ -80,7 +80,7 @@ public class ScriptableDataSetTest {
      *             the exception
      */
     @BeforeEach
-    public void createTable() throws Exception {
+    void createTable() throws Exception {
         connection.createStatement().execute("create table location(num int, addr varchar(40), date timestamp)");
     }
 
@@ -91,7 +91,7 @@ public class ScriptableDataSetTest {
      *             the exception
      */
     @AfterEach
-    public void rollbackTransaction() throws Exception {
+    void rollbackTransaction() throws Exception {
         if (resultSet != null) {
             resultSet.close();
         }
@@ -105,7 +105,7 @@ public class ScriptableDataSetTest {
      *             the exception
      */
     @AfterAll
-    public static void closeConnection() throws Exception {
+    static void closeConnection() throws Exception {
         dbUnitConnection.close();
     }
 
@@ -116,7 +116,7 @@ public class ScriptableDataSetTest {
      *             In case of any error.
      */
     @Test
-    public void jRubyScript() throws Exception {
+    void jRubyScript() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
                 new FlatXmlDataSetBuilder().build(ScriptableDataSetTest.class.getResourceAsStream("jruby.xml")),
                 new ScriptableDataSetConfig("jruby", "jruby:"));
@@ -133,7 +133,7 @@ public class ScriptableDataSetTest {
      *             In case of any error.
      */
     @Test
-    public void groovyScript() throws Exception {
+    void groovyScript() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
                 new FlatXmlDataSetBuilder().build(ScriptableDataSetTest.class.getResourceAsStream("groovy.xml")),
                 new ScriptableDataSetConfig("groovy", "groovy:"));
@@ -150,7 +150,7 @@ public class ScriptableDataSetTest {
      *             In case of any error.
      */
     @Test
-    public void dataSetWithMultipleLanguages() throws Exception {
+    void dataSetWithMultipleLanguages() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
                 new FlatXmlDataSetBuilder()
                         .build(ScriptableDataSetTest.class.getResourceAsStream("multiple_languages.xml")),
@@ -169,7 +169,7 @@ public class ScriptableDataSetTest {
      *             In case of any error.
      */
     @Test
-    public void customHandler() throws Exception {
+    void customHandler() throws Exception {
         List<ScriptInvocationHandler> handlers = new ArrayList<>();
         handlers.add(new JRubyImportAddingInvocationHandler());
 
@@ -189,7 +189,7 @@ public class ScriptableDataSetTest {
      *             In case of any error.
      */
     @Test
-    public void unknownScriptingEngine() throws Exception {
+    void unknownScriptingEngine() throws Exception {
         IDataSet dataSet = new ScriptableDataSet(
                 new FlatXmlDataSetBuilder()
                         .build(ScriptableDataSetTest.class.getResourceAsStream("unknownscriptingengine.xml")),
