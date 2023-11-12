@@ -111,19 +111,19 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.15.2.0</version>
+            <version>${derby.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyshared</artifactId>
-            <version>10.15.2.0</version>
+            <version>${derby.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyoptionaltools</artifactId>
-            <version>10.17.1.0</version>
+            <version>${derby.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -201,12 +201,31 @@
 
     <profiles>
         <profile>
-            <id>jdk17on</id>
+            <id>pre16</id>
+            <activation>
+                <jdk>(,16)</jdk>
+            </activation>
+            <properties>
+                <derby.version>10.15.2.0</derby.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>17</id>
             <activation>
                 <jdk>[17,)</jdk>
             </activation>
             <properties>
                 <argLine>--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED</argLine>
+                <derby.version>10.16.1.1</derby.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>19</id>
+            <activation>
+                <jdk>[19,)</jdk>
+            </activation>
+            <properties>
+                <derby.version>10.17.1.0</derby.version>
             </properties>
         </profile>
     </profiles>
