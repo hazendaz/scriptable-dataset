@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2023 Hazendaz.
+ * Copyright 2011-2024 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -24,8 +24,6 @@ import lombok.ToString;
 
 /**
  * Configures the usage of one scripting language with a prefix and a list of invocation handlers.
- *
- * @author Gunnar Morling
  */
 @ToString
 public class ScriptableDataSetConfig {

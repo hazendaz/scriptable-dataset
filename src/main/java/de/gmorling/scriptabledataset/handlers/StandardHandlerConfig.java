@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2023 Hazendaz.
+ * Copyright 2011-2024 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -29,8 +29,6 @@ import org.slf4j.LoggerFactory;
 /**
  * Manages handlers, that shall always executed for scripts in a given language. These standard handlers will be called
  * <b>before</b> any custom handlers in the pre invocation and <b>after</b> any custom handlers in the post invocation.
- *
- * @author Gunnar Morling
  */
 public class StandardHandlerConfig {
 

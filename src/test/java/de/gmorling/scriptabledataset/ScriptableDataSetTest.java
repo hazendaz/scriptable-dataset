@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2023 Hazendaz.
+ * Copyright 2011-2024 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -45,8 +45,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test for ScriptableDataSet.
- *
- * @author Gunnar Morling
  */
 public class ScriptableDataSetTest {
 

@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2023 Hazendaz.
+ * Copyright 2011-2024 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -25,8 +25,6 @@ import javax.script.ScriptEngine;
  * <p>
  * Implementations must define a default constructor, if they shall be used as standard handler for a language.
  * </p>
- *
- * @author Gunnar Morling
  */
 public interface ScriptInvocationHandler {
 

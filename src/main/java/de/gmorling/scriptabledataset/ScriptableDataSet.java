@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2023 Hazendaz.
+ * Copyright 2011-2024 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -61,8 +61,6 @@ import org.dbunit.dataset.ITableIterator;
  * that can be used to pre-process scripts (e.g. to add common imports) and post-process scripts (e.g. to convert
  * results into data types understood by DBUnit).</li>
  * </ul>
- *
- * @author Gunnar Morling
  */
 public class ScriptableDataSet extends AbstractDataSet {
 

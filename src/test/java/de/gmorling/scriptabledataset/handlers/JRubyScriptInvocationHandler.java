@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2023 Hazendaz.
+ * Copyright 2011-2024 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -22,8 +22,6 @@ import org.jruby.RubyObject;
 /**
  * A <code>ScriptInvocationHandler</code> for JRuby scripts. It adds some commonly used imports to the begin of each
  * script and converts Objects returned by the scripting engine into types processable by DBUnit.
- *
- * @author Gunnar Morling
  */
 public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 
