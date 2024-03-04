@@ -17,14 +17,11 @@ package de.gmorling.scriptabledataset.handlers;
 import javax.script.ScriptEngine;
 
 /**
- * <p>
  * Implementations can be registered with a ScriptableDataSet to be called before and after script contained in a data
  * set field is executed. This can be used to add commonly used import statements for all scripts of a given language or
  * to post-process the result of a script execution.
- * </p>
  * <p>
  * Implementations must define a default constructor, if they shall be used as standard handler for a language.
- * </p>
  */
 public interface ScriptInvocationHandler {
 

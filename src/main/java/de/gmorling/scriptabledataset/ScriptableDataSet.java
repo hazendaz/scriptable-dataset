@@ -25,15 +25,12 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITableIterator;
 
 /**
- * <p>
  * An implementation of a <a href="http://www.dbunit.org/">DBUnit</a> <code>IDataSet</code>, that allows the use of
  * script expressions in its fields. In order to use a certain scripting language in a scriptable data set, a
  * <a href="http://jcp.org/en/jsr/detail?id=223">JSR 223</a> (&quot;Scripting for the Java<sup>TM</sup> Platform&quot;)
  * compatible script engine has to exist for that language.
- * </p>
  * <p>
  * Using the <a href="http://jruby.org/">JRuby</a> engine e.g., a scriptable data set file could look like this:
- * </p>
  *
  * <pre>
  * &lt;dataset&gt;
