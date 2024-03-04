@@ -17,7 +17,6 @@ package de.gmorling.scriptabledataset.handlers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ServiceConfigurationError;
@@ -47,12 +46,8 @@ public class StandardHandlerConfig {
         standardHandlers = new HashMap<>();
 
         ServiceLoader<ScriptInvocationHandler> serviceLoader = ServiceLoader.load(ScriptInvocationHandler.class);
-        Iterator<ScriptInvocationHandler> iterator = serviceLoader.iterator();
-
         try {
-            while (iterator.hasNext()) {
-
-                ScriptInvocationHandler scriptInvocationHandler = iterator.next();
+            for (ScriptInvocationHandler scriptInvocationHandler : serviceLoader) {
 
                 List<ScriptInvocationHandler> handlersForLanguage = standardHandlers
                         .get(scriptInvocationHandler.getLanguageName());
@@ -84,8 +79,7 @@ public class StandardHandlerConfig {
     public static List<ScriptInvocationHandler> getStandardHandlersByLanguage(String language) {
         if (standardHandlers.containsKey(language)) {
             return Collections.unmodifiableList(standardHandlers.get(language));
-        } else {
-            return Collections.emptyList();
         }
+        return Collections.emptyList();
     }
 }

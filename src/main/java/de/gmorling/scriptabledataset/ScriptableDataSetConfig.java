@@ -65,8 +65,6 @@ public class ScriptableDataSetConfig {
      */
     public ScriptableDataSetConfig(String languageName, String prefix, List<ScriptInvocationHandler> handlers) {
 
-        super();
-
         Objects.requireNonNull(languageName);
         Objects.requireNonNull(prefix);
 

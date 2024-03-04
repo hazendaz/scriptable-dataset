@@ -42,12 +42,10 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
     public Object postInvoke(Object object) {
 
         if (object instanceof RubyObject) {
-
             Invocable i = (Invocable) engine;
 
             RubyObject rubyObject = (RubyObject) object;
             if (rubyObject.getMetaClass().getName().equals("DateTime")) {
-
                 try {
                     object = i.invokeMethod(object, "strftime", "%Y-%m-%d");
                 } catch (Exception e) {

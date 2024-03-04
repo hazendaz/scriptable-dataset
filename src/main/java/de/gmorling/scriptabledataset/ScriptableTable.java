@@ -69,22 +69,21 @@ public class ScriptableTable implements ITable {
 
             ScriptEngine engine = manager.getEngineByName(oneConfig.getLanguageName());
 
-            if (engine != null) {
-                enginesByPrefix.put(oneConfig.getPrefix(), engine);
-
-                List<ScriptInvocationHandler> handlers = getAllHandlers(oneConfig);
-
-                for (ScriptInvocationHandler oneHandler : handlers) {
-                    oneHandler.setScriptEngine(engine);
-                }
-
-                handlersByPrefix.put(oneConfig.getPrefix(), handlers);
-
-                logger.info("Registered scripting engine {} for language {}.", engine, oneConfig.getLanguageName());
-            } else {
+            if (engine == null) {
                 throw new RuntimeException(
                         "No scripting engine found for language \"" + oneConfig.getLanguageName() + "\".");
             }
+            enginesByPrefix.put(oneConfig.getPrefix(), engine);
+
+            List<ScriptInvocationHandler> handlers = getAllHandlers(oneConfig);
+
+            for (ScriptInvocationHandler oneHandler : handlers) {
+                oneHandler.setScriptEngine(engine);
+            }
+
+            handlersByPrefix.put(oneConfig.getPrefix(), handlers);
+
+            logger.info("Registered scripting engine {} for language {}.", engine, oneConfig.getLanguageName());
         }
     }
 
@@ -158,10 +157,8 @@ public class ScriptableTable implements ITable {
      */
     private List<ScriptInvocationHandler> getAllHandlers(ScriptableDataSetConfig config) {
 
-        List<ScriptInvocationHandler> theValue = new ArrayList<>();
-
-        // standard handlers for the language
-        theValue.addAll(StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));
+        List<ScriptInvocationHandler> theValue = new ArrayList<>(
+                StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));
 
         // custom handlers
         theValue.addAll(config.getHandlers());
