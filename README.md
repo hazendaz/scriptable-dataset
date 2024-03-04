@@ -11,7 +11,7 @@ See site page [here](http://hazendaz.github.io/scriptable-dataset/)
 
 ## Forked ##
 
-Original repo has not been touched in nearly 7 years.  While the code base is not all that difficult it did need some updating.  This serves as updated release since original is effectively no longer supported.
+Original repo has not been touched since 2010.  While the code base is not all that difficult it did need some updating.  This serves as updated release since original is effectively no longer supported.
 
 ## Overview ##
 
