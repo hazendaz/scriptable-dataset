@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 scriptable-dataset,de.gmorling.scriptabledataset,ScriptableIterator,4,22,0,0,1,6,1,3,1,3
-scriptable-dataset,de.gmorling.scriptabledataset,ScriptableTable,10,211,1,15,3,47,2,11,1,4
+scriptable-dataset,de.gmorling.scriptabledataset,ScriptableTable,10,207,1,15,3,46,2,11,1,4
 scriptable-dataset,de.gmorling.scriptabledataset,ScriptableDataSetConfig,22,42,0,2,1,14,1,6,1,5
 scriptable-dataset,de.gmorling.scriptabledataset,ScriptableDataSet,4,33,1,1,0,9,1,2,0,2
-scriptable-dataset,de.gmorling.scriptabledataset.handlers,StandardHandlerConfig,11,54,1,5,5,17,1,4,0,2
+scriptable-dataset,de.gmorling.scriptabledataset.handlers,StandardHandlerConfig,11,54,1,5,5,15,1,4,0,2
