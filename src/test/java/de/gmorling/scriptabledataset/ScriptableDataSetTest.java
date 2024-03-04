@@ -46,7 +46,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for ScriptableDataSet.
  */
-public class ScriptableDataSetTest {
+class ScriptableDataSetTest {
 
     /** The connection. */
     private static Connection connection;
