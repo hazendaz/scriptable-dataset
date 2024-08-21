@@ -49,13 +49,13 @@ import org.junit.jupiter.api.Test;
 class ScriptableDataSetTest {
 
     /** The connection. */
-    private static Connection connection;
+    static Connection connection;
 
     /** The db unit connection. */
-    private static IDatabaseConnection dbUnitConnection;
+    static IDatabaseConnection dbUnitConnection;
 
     /** The result set. */
-    private ResultSet resultSet;
+    ResultSet resultSet;
 
     /**
      * Initialize connection.
@@ -209,7 +209,7 @@ class ScriptableDataSetTest {
      * @throws SQLException
      *             the SQL exception
      */
-    private void insertDataSetAndCreateResultSet(IDataSet dataSet) throws DatabaseUnitException, SQLException {
+    void insertDataSetAndCreateResultSet(IDataSet dataSet) throws DatabaseUnitException, SQLException {
         DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
         resultSet = connection.createStatement().executeQuery("SELECT num, addr, date FROM location ORDER BY num");
     }
@@ -229,7 +229,7 @@ class ScriptableDataSetTest {
      * @throws SQLException
      *             the SQL exception
      */
-    private void assertNextRow(ResultSet rs, int expectedInt, String expectedString, Date expectedDate)
+    void assertNextRow(ResultSet rs, int expectedInt, String expectedString, Date expectedDate)
             throws SQLException {
         if (!rs.next()) {
             fail("Data set should have a row.");
@@ -249,7 +249,7 @@ class ScriptableDataSetTest {
      *
      * @return the date
      */
-    private Date addDaysToToday(int numberOfDays) {
+    Date addDaysToToday(int numberOfDays) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, numberOfDays);
 
