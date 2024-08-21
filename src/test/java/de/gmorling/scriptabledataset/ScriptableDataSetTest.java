@@ -229,8 +229,7 @@ class ScriptableDataSetTest {
      * @throws SQLException
      *             the SQL exception
      */
-    void assertNextRow(ResultSet rs, int expectedInt, String expectedString, Date expectedDate)
-            throws SQLException {
+    void assertNextRow(ResultSet rs, int expectedInt, String expectedString, Date expectedDate) throws SQLException {
         if (!rs.next()) {
             fail("Data set should have a row.");
         }
