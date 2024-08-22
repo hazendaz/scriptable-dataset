@@ -57,13 +57,13 @@
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">class</strong> <a name="ScriptableDataSetTest" href="../../../de/gmorling/scriptabledataset/ScriptableDataSetTest.html#ScriptableDataSetTest">ScriptableDataSetTest</a> {
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      <em class="jxr_javadoccomment">/** The connection. */</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Connection connection;
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">static</strong> Connection connection;
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      <em class="jxr_javadoccomment">/** The db unit connection. */</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> IDatabaseConnection dbUnitConnection;
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">static</strong> IDatabaseConnection dbUnitConnection;
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      <em class="jxr_javadoccomment">/** The result set. */</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">private</strong> ResultSet resultSet;
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      ResultSet resultSet;
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     * Initialize connection.</em>
@@ -217,7 +217,7 @@
 <a class="jxr_linenumber" name="L209" href="#L209">209</a> <em class="jxr_javadoccomment">     * @throws SQLException</em>
 <a class="jxr_linenumber" name="L210" href="#L210">210</a> <em class="jxr_javadoccomment">     *             the SQL exception</em>
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> insertDataSetAndCreateResultSet(IDataSet dataSet) <strong class="jxr_keyword">throws</strong> DatabaseUnitException, SQLException {
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>     <strong class="jxr_keyword">void</strong> insertDataSetAndCreateResultSet(IDataSet dataSet) <strong class="jxr_keyword">throws</strong> DatabaseUnitException, SQLException {
 <a class="jxr_linenumber" name="L213" href="#L213">213</a>         DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
 <a class="jxr_linenumber" name="L214" href="#L214">214</a>         resultSet = connection.createStatement().executeQuery(<span class="jxr_string">"SELECT num, addr, date FROM location ORDER BY num"</span>);
 <a class="jxr_linenumber" name="L215" href="#L215">215</a>     }
@@ -237,33 +237,32 @@
 <a class="jxr_linenumber" name="L229" href="#L229">229</a> <em class="jxr_javadoccomment">     * @throws SQLException</em>
 <a class="jxr_linenumber" name="L230" href="#L230">230</a> <em class="jxr_javadoccomment">     *             the SQL exception</em>
 <a class="jxr_linenumber" name="L231" href="#L231">231</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> assertNextRow(ResultSet rs, <strong class="jxr_keyword">int</strong> expectedInt, String expectedString, Date expectedDate)
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>             <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>         <strong class="jxr_keyword">if</strong> (!rs.next()) {
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>             fail(<span class="jxr_string">"Data set should have a row."</span>);
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>         }
-<a class="jxr_linenumber" name="L237" href="#L237">237</a> 
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>         assertEquals(expectedInt, rs.getObject(1));
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>         assertEquals(expectedString, rs.getObject(2));
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>         assertEquals(DateUtils.truncate(expectedDate, Calendar.DATE),
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>                 DateUtils.truncate(rs.getObject(3), Calendar.DATE));
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>     }
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> 
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     * Adds the days to today.</em>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     * @param numberOfDays</em>
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     *            the number of days</em>
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     * @return the date</em>
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>     <strong class="jxr_keyword">private</strong> Date addDaysToToday(<strong class="jxr_keyword">int</strong> numberOfDays) {
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>         Calendar calendar = Calendar.getInstance();
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>         calendar.add(Calendar.DATE, numberOfDays);
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> 
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>         <strong class="jxr_keyword">return</strong> calendar.getTime();
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>     }
-<a class="jxr_linenumber" name="L258" href="#L258">258</a> }
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>     <strong class="jxr_keyword">void</strong> assertNextRow(ResultSet rs, <strong class="jxr_keyword">int</strong> expectedInt, String expectedString, Date expectedDate) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>         <strong class="jxr_keyword">if</strong> (!rs.next()) {
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>             fail(<span class="jxr_string">"Data set should have a row."</span>);
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>         }
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> 
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>         assertEquals(expectedInt, rs.getObject(1));
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>         assertEquals(expectedString, rs.getObject(2));
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>         assertEquals(DateUtils.truncate(expectedDate, Calendar.DATE),
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>                 DateUtils.truncate(rs.getObject(3), Calendar.DATE));
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>     }
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> 
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">     * Adds the days to today.</em>
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">     * @param numberOfDays</em>
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     *            the number of days</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     * @return the date</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>     Date addDaysToToday(<strong class="jxr_keyword">int</strong> numberOfDays) {
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>         Calendar calendar = Calendar.getInstance();
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>         calendar.add(Calendar.DATE, numberOfDays);
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>         <strong class="jxr_keyword">return</strong> calendar.getTime();
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>     }
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2024 <a href="https://github.com/hazendaz/">hazendaz</a>. All rights reserved.</div>
