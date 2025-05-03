@@ -69,8 +69,6 @@
         <groovy.version>4.0.26</groovy.version>
         <slf4j.version>2.0.17</slf4j.version>
 
-        <argLine>--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED</argLine>
-
         <!-- Automatic Module Name -->
         <module.name>com.github.hazendaz.scriptable.dataset</module.name>
     </properties>
