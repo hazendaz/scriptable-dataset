@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2024 Hazendaz.
+ * Copyright 2011-2025 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -105,6 +105,7 @@ class ScriptableDataSetTest {
     @AfterAll
     static void closeConnection() throws Exception {
         dbUnitConnection.close();
+        connection.close();
     }
 
     /**
