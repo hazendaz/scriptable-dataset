@@ -66,6 +66,7 @@
     </distributionManagement>
 
     <properties>
+        <derby.version>10.16.1.1</derby.version>
         <groovy.version>4.0.26</groovy.version>
         <slf4j.version>2.0.17</slf4j.version>
 
@@ -186,24 +187,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${enforcer.plugin}</version>
-                    <configuration>
-                        <rules>
-                            <enforceBytecodeVersion>
-                                <excludes>
-                                    <exclude>org.apache.derby:derby</exclude>
-                                    <exclude>org.apache.derby:derbyshared</exclude>
-                                    <exclude>org.apache.derby:derbytools</exclude>
-                                    <exclude>org.apache.derby:derbyoptionaltools</exclude>
-                                </excludes>
-                            </enforceBytecodeVersion>
-                        </rules>
-                    </configuration>
-                </plugin>
-
-                <plugin>
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${license.plugin}</version>
@@ -222,15 +205,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>17</id>
-            <activation>
-                <jdk>[17,)</jdk>
-            </activation>
-            <properties>
-                <derby.version>10.16.1.1</derby.version>
-            </properties>
-        </profile>
         <profile>
             <id>19</id>
             <activation>
