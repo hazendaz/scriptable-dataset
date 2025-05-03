@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2024 Hazendaz.
+ * Copyright 2011-2025 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.ITable;
@@ -118,26 +119,24 @@ public class ScriptableTable implements ITable {
 
                     List<ScriptInvocationHandler> handlers = handlersByPrefix.get(oneEntry.getKey());
 
+                    // preInvoke
+                    for (ScriptInvocationHandler handler : handlers) {
+                        script = handler.preInvoke(script);
+                    }
+
+                    logger.debug("Executing script: {}", script);
+
+                    // the actual script evaluation
                     try {
-
-                        // preInvoke
-                        for (ScriptInvocationHandler handler : handlers) {
-                            script = handler.preInvoke(script);
-                        }
-
-                        logger.debug("Executing script: {}", script);
-
-                        // the actual script evaluation
                         theValue = engine.eval(script);
-
-                        // call postInvoke in reversed order
-                        Collections.reverse(handlers);
-                        for (ScriptInvocationHandler handler : handlers) {
-                            theValue = handler.postInvoke(theValue);
-                        }
-
-                    } catch (Exception e) {
+                    } catch (ScriptException e) {
                         throw new RuntimeException(e);
+                    }
+
+                    // call postInvoke in reversed order
+                    Collections.reverse(handlers);
+                    for (ScriptInvocationHandler handler : handlers) {
+                        theValue = handler.postInvoke(theValue);
                     }
                 }
             }
