@@ -104,8 +104,7 @@ public class ScriptableTable implements ITable {
         Object theValue = wrapped.getValue(row, column);
 
         // only strings can be processed
-        if (theValue instanceof String) {
-            String script = (String) theValue;
+        if (theValue instanceof String script) {
 
             for (Entry<String, ScriptEngine> oneEntry : enginesByPrefix.entrySet()) {
 

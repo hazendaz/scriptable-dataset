@@ -66,6 +66,9 @@
     </distributionManagement>
 
     <properties>
+        <java.version>17</java.version>
+        <java.release.version>17</java.release.version>
+
         <derby.version>10.16.1.1</derby.version>
         <groovy.version>4.0.26</groovy.version>
         <slf4j.version>2.0.17</slf4j.version>
@@ -159,8 +162,14 @@
 
         <dependency>
             <groupId>org.jruby</groupId>
-            <artifactId>jruby-complete</artifactId>
-            <version>9.4.2.0</version>
+            <artifactId>jruby-core</artifactId>
+            <version>10.0.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jruby</groupId>
+            <artifactId>jruby-stdlib</artifactId>
+            <version>10.0.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -198,6 +207,13 @@
                                 </excludes>
                             </licenseSet>
                         </licenseSets>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <useModulePath>false</useModulePath>
                     </configuration>
                 </plugin>
             </plugins>
