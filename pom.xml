@@ -66,6 +66,9 @@
     </distributionManagement>
 
     <properties>
+        <java.version>17</java.version>
+        <java.release.version>17</java.release.version>
+
         <derby.version>10.16.1.1</derby.version>
         <groovy.version>4.0.26</groovy.version>
         <slf4j.version>2.0.17</slf4j.version>
