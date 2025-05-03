@@ -25,6 +25,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,6 +58,9 @@ class ScriptableDataSetTest {
     /** The result set. */
     ResultSet resultSet;
 
+    /** The statement. */
+    Statement statement;
+
     /**
      * Initialize connection.
      *
@@ -79,7 +83,8 @@ class ScriptableDataSetTest {
      */
     @BeforeEach
     void createTable() throws Exception {
-        connection.createStatement().execute("create table location(num int, addr varchar(40), date timestamp)");
+        statement = connection.createStatement();
+        statement.execute("create table location(num int, addr varchar(40), date timestamp)");
     }
 
     /**
@@ -94,6 +99,7 @@ class ScriptableDataSetTest {
             resultSet.close();
         }
         connection.rollback();
+        statement.close();
     }
 
     /**
@@ -212,7 +218,7 @@ class ScriptableDataSetTest {
      */
     void insertDataSetAndCreateResultSet(IDataSet dataSet) throws DatabaseUnitException, SQLException {
         DatabaseOperation.INSERT.execute(dbUnitConnection, dataSet);
-        resultSet = connection.createStatement().executeQuery("SELECT num, addr, date FROM location ORDER BY num");
+        resultSet = statement.executeQuery("SELECT num, addr, date FROM location ORDER BY num");
     }
 
     /**
