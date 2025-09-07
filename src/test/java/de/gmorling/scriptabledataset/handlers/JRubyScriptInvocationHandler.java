@@ -1,7 +1,7 @@
 /*
  * scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
  *
- * Copyright 2011-2024 Hazendaz.
+ * Copyright 2011-2025 Hazendaz.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of The Apache Software License,
@@ -40,12 +40,10 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
 
     @Override
     public Object postInvoke(Object object) {
-
         if (object instanceof RubyObject) {
-            Invocable i = (Invocable) engine;
-
             RubyObject rubyObject = (RubyObject) object;
             if (rubyObject.getMetaClass().getName().equals("DateTime")) {
+                Invocable i = (Invocable) engine;
                 try {
                     object = i.invokeMethod(object, "strftime", "%Y-%m-%d");
                 } catch (Exception e) {
@@ -53,7 +51,6 @@ public class JRubyScriptInvocationHandler implements ScriptInvocationHandler {
                 }
             }
         }
-
         return object;
     }
 
