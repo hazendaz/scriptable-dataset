@@ -104,45 +104,44 @@ public class ScriptableTable implements ITable {
 <span class="fc" id="L104">        Object theValue = wrapped.getValue(row, column);</span>
 
         // only strings can be processed
-<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (theValue instanceof String) {</span>
-<span class="fc" id="L108">            String script = (String) theValue;</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (theValue instanceof String script) {</span>
 
-<span class="fc bfc" id="L110" title="All 2 branches covered.">            for (Entry&lt;String, ScriptEngine&gt; oneEntry : enginesByPrefix.entrySet()) {</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">            for (Entry&lt;String, ScriptEngine&gt; oneEntry : enginesByPrefix.entrySet()) {</span>
 
-<span class="fc" id="L112">                String prefix = oneEntry.getKey();</span>
+<span class="fc" id="L111">                String prefix = oneEntry.getKey();</span>
 
                 // found engine for prefix
-<span class="fc bfc" id="L115" title="All 2 branches covered.">                if (script.startsWith(prefix)) {</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">                if (script.startsWith(prefix)) {</span>
 
-<span class="fc" id="L117">                    ScriptEngine engine = oneEntry.getValue();</span>
-<span class="fc" id="L118">                    script = script.substring(prefix.length());</span>
+<span class="fc" id="L116">                    ScriptEngine engine = oneEntry.getValue();</span>
+<span class="fc" id="L117">                    script = script.substring(prefix.length());</span>
 
-<span class="fc" id="L120">                    List&lt;ScriptInvocationHandler&gt; handlers = handlersByPrefix.get(oneEntry.getKey());</span>
+<span class="fc" id="L119">                    List&lt;ScriptInvocationHandler&gt; handlers = handlersByPrefix.get(oneEntry.getKey());</span>
 
                     // preInvoke
-<span class="fc bfc" id="L123" title="All 2 branches covered.">                    for (ScriptInvocationHandler handler : handlers) {</span>
-<span class="fc" id="L124">                        script = handler.preInvoke(script);</span>
-<span class="fc" id="L125">                    }</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">                    for (ScriptInvocationHandler handler : handlers) {</span>
+<span class="fc" id="L123">                        script = handler.preInvoke(script);</span>
+<span class="fc" id="L124">                    }</span>
 
-<span class="fc" id="L127">                    logger.debug(&quot;Executing script: {}&quot;, script);</span>
+<span class="fc" id="L126">                    logger.debug(&quot;Executing script: {}&quot;, script);</span>
 
                     // the actual script evaluation
                     try {
-<span class="fc" id="L131">                        theValue = engine.eval(script);</span>
-<span class="nc" id="L132">                    } catch (ScriptException e) {</span>
-<span class="nc" id="L133">                        throw new RuntimeException(e);</span>
-<span class="fc" id="L134">                    }</span>
+<span class="fc" id="L130">                        theValue = engine.eval(script);</span>
+<span class="nc" id="L131">                    } catch (ScriptException e) {</span>
+<span class="nc" id="L132">                        throw new RuntimeException(e);</span>
+<span class="fc" id="L133">                    }</span>
 
                     // call postInvoke in reversed order
-<span class="fc" id="L137">                    Collections.reverse(handlers);</span>
-<span class="fc bfc" id="L138" title="All 2 branches covered.">                    for (ScriptInvocationHandler handler : handlers) {</span>
-<span class="fc" id="L139">                        theValue = handler.postInvoke(theValue);</span>
-<span class="fc" id="L140">                    }</span>
+<span class="fc" id="L136">                    Collections.reverse(handlers);</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">                    for (ScriptInvocationHandler handler : handlers) {</span>
+<span class="fc" id="L138">                        theValue = handler.postInvoke(theValue);</span>
+<span class="fc" id="L139">                    }</span>
                 }
-<span class="fc" id="L142">            }</span>
+<span class="fc" id="L141">            }</span>
         }
 
-<span class="fc" id="L145">        return theValue;</span>
+<span class="fc" id="L144">        return theValue;</span>
     }
 
     /**
@@ -156,13 +155,13 @@ public class ScriptableTable implements ITable {
      */
     private List&lt;ScriptInvocationHandler&gt; getAllHandlers(ScriptableDataSetConfig config) {
 
-<span class="fc" id="L159">        List&lt;ScriptInvocationHandler&gt; theValue = new ArrayList&lt;&gt;(</span>
-<span class="fc" id="L160">                StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));</span>
+<span class="fc" id="L158">        List&lt;ScriptInvocationHandler&gt; theValue = new ArrayList&lt;&gt;(</span>
+<span class="fc" id="L159">                StandardHandlerConfig.getStandardHandlersByLanguage(config.getLanguageName()));</span>
 
         // custom handlers
-<span class="fc" id="L163">        theValue.addAll(config.getHandlers());</span>
+<span class="fc" id="L162">        theValue.addAll(config.getHandlers());</span>
 
-<span class="fc" id="L165">        return theValue;</span>
+<span class="fc" id="L164">        return theValue;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
