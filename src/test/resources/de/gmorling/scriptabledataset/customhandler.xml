@@ -3,7 +3,7 @@
 
     scriptable-dataset (https://github.com/hazendaz/scriptable-dataset)
 
-    Copyright 2011-2023 Hazendaz.
+    Copyright 2011-2025 Hazendaz.
 
     All rights reserved. This program and the accompanying materials
     are made available under the terms of The Apache Software License,
@@ -17,5 +17,5 @@
 -->
 
 <dataset>
-    <location num="jruby:BigDecimal((PI(100)/2).to_s)" addr="jruby:'Webster Street'" date="jruby:DateTime::now() - 14"/>
+    <location num="jruby:(BigMath::PI(100).to_f / 2)" addr="jruby:'Webster Street'" date="jruby:DateTime::now() - 14"/>
 </dataset>
