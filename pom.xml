@@ -70,7 +70,7 @@
         <java.release.version>17</java.release.version>
 
         <derby.version>10.16.1.1</derby.version>
-        <groovy.version>5.0.1</groovy.version>
+        <groovy.version>5.0.2</groovy.version>
         <slf4j.version>2.0.17</slf4j.version>
 
         <!-- Automatic Module Name -->
