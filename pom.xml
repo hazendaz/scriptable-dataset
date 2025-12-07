@@ -28,7 +28,7 @@
 
     <groupId>com.github.hazendaz</groupId>
     <artifactId>scriptable-dataset</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.1.1</version>
 
     <name>scriptable-dataset</name>
     <description>A scriptable dataset for DBUnit.</description>
@@ -46,7 +46,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/hazendaz/scriptable-dataset.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>scriptable-dataset-3.1.1</tag>
         <url>https://github.com/hazendaz/scriptable-dataset</url>
     </scm>
     <issueManagement>
