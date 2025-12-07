@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.github.hazendaz.scriptable.dataset","l":"de.gmorling.scriptabledataset"},{"m":"com.github.hazendaz.scriptable.dataset","l":"de.gmorling.scriptabledataset.handlers"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"de.gmorling.scriptabledataset"},{"l":"de.gmorling.scriptabledataset.handlers"}];updateSearchResults();

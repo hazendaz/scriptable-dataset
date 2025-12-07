@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"de.gmorling.scriptabledataset.handlers","l":"JRubyImportAddingInvocationHandler"},{"p":"de.gmorling.scriptabledataset.handlers","l":"JRubyScriptInvocationHandler"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"de.gmorling.scriptabledataset.handlers","l":"JRubyImportAddingInvocationHandler"},{"p":"de.gmorling.scriptabledataset.handlers","l":"JRubyScriptInvocationHandler"}];updateSearchResults();

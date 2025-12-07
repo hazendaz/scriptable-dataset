@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"com.github.hazendaz.scriptable.dataset"}];updateSearchResults();
+moduleSearchIndex = [];updateSearchResults();
