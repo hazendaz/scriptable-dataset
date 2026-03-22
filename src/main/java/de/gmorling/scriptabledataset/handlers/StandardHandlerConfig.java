@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
- * Copyright 2011-2024 Hazendaz
+ * Copyright 2011-2026 Hazendaz
  */
 package de.gmorling.scriptabledataset.handlers;
 
