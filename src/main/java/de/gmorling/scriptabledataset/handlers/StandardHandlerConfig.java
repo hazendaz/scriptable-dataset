@@ -54,7 +54,7 @@ public class StandardHandlerConfig {
             logger.error(
                     "Loading of standard script invocation handlers failed, most likely due to an unknown handler implementation given in META-INF/services {}",
                     ScriptInvocationHandler.class.getName());
-            standardHandlers = Collections.emptyMap();
+            standardHandlers = Map.of();
         }
     }
 
@@ -70,6 +70,6 @@ public class StandardHandlerConfig {
         if (standardHandlers.containsKey(language)) {
             return Collections.unmodifiableList(standardHandlers.get(language));
         }
-        return Collections.emptyList();
+        return List.of();
     }
 }
