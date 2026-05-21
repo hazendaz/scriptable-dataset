@@ -83,7 +83,7 @@
                 <artifactId>snakeyaml</artifactId>
                 <version>2.6</version>
             </dependency>
-
+    
             <!-- SLF4J API -->
             <dependency>
                 <groupId>org.slf4j</groupId>
