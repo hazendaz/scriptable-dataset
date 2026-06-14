@@ -83,12 +83,12 @@
                 <artifactId>snakeyaml</artifactId>
                 <version>2.6</version>
             </dependency>
-    
+
             <!-- SLF4J API -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>2.0.18</version>
+                <version>${slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -97,7 +97,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -115,7 +114,6 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>2.6</version>
             <scope>compile</scope>
         </dependency>
 
@@ -223,17 +221,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <profiles>
-        <profile>
-            <id>19</id>
-            <activation>
-                <jdk>[19,)</jdk>
-            </activation>
-            <properties>
-                <derby.version>10.17.1.0</derby.version>
-            </properties>
-        </profile>
-    </profiles>
 
 </project>
