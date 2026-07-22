@@ -164,7 +164,7 @@
 
         <dependency>
             <groupId>org.jruby</groupId>
-            <artifactId>jruby-core</artifactId>
+            <artifactId>jruby-base</artifactId>
             <version>10.1.1.0</version>
             <scope>test</scope>
         </dependency>
