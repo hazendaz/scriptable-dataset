@@ -89,6 +89,8 @@ class ScriptableDataSetTest {
             resultSet.close();
         }
         connection.rollback();
+        statement.execute("drop table if exists location");
+        connection.commit();
         statement.close();
     }
 
