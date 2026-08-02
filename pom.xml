@@ -60,6 +60,7 @@
         <java.release.version>17</java.release.version>
 
         <groovy.version>5.0.8</groovy.version>
+        <jruby.version>10.1.1.0</jruby.version>
         <slf4j.version>2.0.18</slf4j.version>
 
         <!-- Automatic Module Name -->
@@ -152,13 +153,13 @@
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby-base</artifactId>
-            <version>10.1.1.0</version>
+            <version>${jruby.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby-stdlib</artifactId>
-            <version>10.1.1.0</version>
+            <version>${jruby.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
