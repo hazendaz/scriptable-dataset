@@ -59,7 +59,7 @@ class ScriptableDataSetTest {
      */
     @BeforeAll
     static void initializeConnection() throws Exception {
-        connection = DriverManager.getConnection("jdbc:derby:derbyTest;create=true");
+        connection = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
         connection.setAutoCommit(false);
 
         dbUnitConnection = new DatabaseConnection(connection);
@@ -89,6 +89,8 @@ class ScriptableDataSetTest {
             resultSet.close();
         }
         connection.rollback();
+        statement.execute("drop table if exists location");
+        connection.commit();
         statement.close();
     }
 
