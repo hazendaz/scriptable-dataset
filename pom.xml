@@ -60,7 +60,7 @@
         <java.release.version>17</java.release.version>
 
         <groovy.version>5.1.3</groovy.version>
-        <jruby.version>10.1.1.0</jruby.version>
+        <jruby.version>10.1.2.0</jruby.version>
         <slf4j.version>2.0.20</slf4j.version>
 
         <!-- Automatic Module Name -->
